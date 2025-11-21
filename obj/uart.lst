@@ -1,0 +1,1078 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler
+                                      3 ; Version 4.5.0 #15242 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module uart
+                                      6 	
+                                      7 	.optsdcc -mmcs51 --model-small
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _TIM2_BAUD_cmd
+                                     12 	.globl _TIM2_config
+                                     13 	.globl _TIM2_cmd
+                                     14 	.globl _TIM_config
+                                     15 	.globl _TIM_cmd
+                                     16 	.globl _PX3
+                                     17 	.globl _EX3
+                                     18 	.globl _IE3
+                                     19 	.globl _IT3
+                                     20 	.globl _PX2
+                                     21 	.globl _EX2
+                                     22 	.globl _IE2
+                                     23 	.globl _IT2
+                                     24 	.globl _TF2
+                                     25 	.globl _EXF2
+                                     26 	.globl _RCLK
+                                     27 	.globl _TCLK
+                                     28 	.globl _EXEN2
+                                     29 	.globl _TR2
+                                     30 	.globl _T2_CT
+                                     31 	.globl _CPRL2
+                                     32 	.globl _INT2
+                                     33 	.globl _INT3
+                                     34 	.globl _P4_3
+                                     35 	.globl _P4_2
+                                     36 	.globl _P4_1
+                                     37 	.globl _P4_0
+                                     38 	.globl _T2EX
+                                     39 	.globl _T2
+                                     40 	.globl _PT2
+                                     41 	.globl _ET2
+                                     42 	.globl _CY
+                                     43 	.globl _AC
+                                     44 	.globl _F0
+                                     45 	.globl _RS1
+                                     46 	.globl _RS0
+                                     47 	.globl _OV
+                                     48 	.globl _F1
+                                     49 	.globl _P
+                                     50 	.globl _PS
+                                     51 	.globl _PT1
+                                     52 	.globl _PX1
+                                     53 	.globl _PT0
+                                     54 	.globl _PX0
+                                     55 	.globl _RD
+                                     56 	.globl _WR
+                                     57 	.globl _T1
+                                     58 	.globl _T0
+                                     59 	.globl _INT1
+                                     60 	.globl _INT0
+                                     61 	.globl _TXD
+                                     62 	.globl _RXD
+                                     63 	.globl _P3_7
+                                     64 	.globl _P3_6
+                                     65 	.globl _P3_5
+                                     66 	.globl _P3_4
+                                     67 	.globl _P3_3
+                                     68 	.globl _P3_2
+                                     69 	.globl _P3_1
+                                     70 	.globl _P3_0
+                                     71 	.globl _EA
+                                     72 	.globl _ES
+                                     73 	.globl _ET1
+                                     74 	.globl _EX1
+                                     75 	.globl _ET0
+                                     76 	.globl _EX0
+                                     77 	.globl _P2_7
+                                     78 	.globl _P2_6
+                                     79 	.globl _P2_5
+                                     80 	.globl _P2_4
+                                     81 	.globl _P2_3
+                                     82 	.globl _P2_2
+                                     83 	.globl _P2_1
+                                     84 	.globl _P2_0
+                                     85 	.globl _SM0
+                                     86 	.globl _SM1
+                                     87 	.globl _SM2
+                                     88 	.globl _REN
+                                     89 	.globl _TB8
+                                     90 	.globl _RB8
+                                     91 	.globl _TI
+                                     92 	.globl _RI
+                                     93 	.globl _P1_7
+                                     94 	.globl _P1_6
+                                     95 	.globl _P1_5
+                                     96 	.globl _P1_4
+                                     97 	.globl _P1_3
+                                     98 	.globl _P1_2
+                                     99 	.globl _P1_1
+                                    100 	.globl _P1_0
+                                    101 	.globl _TF1
+                                    102 	.globl _TR1
+                                    103 	.globl _TF0
+                                    104 	.globl _TR0
+                                    105 	.globl _IE1
+                                    106 	.globl _IT1
+                                    107 	.globl _IE0
+                                    108 	.globl _IT0
+                                    109 	.globl _P0_7
+                                    110 	.globl _P0_6
+                                    111 	.globl _P0_5
+                                    112 	.globl _P0_4
+                                    113 	.globl _P0_3
+                                    114 	.globl _P0_2
+                                    115 	.globl _P0_1
+                                    116 	.globl _P0_0
+                                    117 	.globl _P4
+                                    118 	.globl _ISP_CONTR
+                                    119 	.globl _ISP_TRIG
+                                    120 	.globl _ISP_CMD
+                                    121 	.globl _ISP_ADDRL
+                                    122 	.globl _ISP_ADDRH
+                                    123 	.globl _ISP_DATA
+                                    124 	.globl _WDT_CONTR
+                                    125 	.globl _TH2
+                                    126 	.globl _TL2
+                                    127 	.globl _RCAP2H
+                                    128 	.globl _RCAP2L
+                                    129 	.globl _T2MOD
+                                    130 	.globl _T2CON
+                                    131 	.globl _XICON
+                                    132 	.globl _IPH
+                                    133 	.globl _SADDR1
+                                    134 	.globl _AUXR1
+                                    135 	.globl _AUXR
+                                    136 	.globl _B
+                                    137 	.globl _ACC
+                                    138 	.globl _PSW
+                                    139 	.globl _IP
+                                    140 	.globl _P3
+                                    141 	.globl _IE
+                                    142 	.globl _P2
+                                    143 	.globl _SBUF
+                                    144 	.globl _SCON
+                                    145 	.globl _P1
+                                    146 	.globl _TH1
+                                    147 	.globl _TH0
+                                    148 	.globl _TL1
+                                    149 	.globl _TL0
+                                    150 	.globl _TMOD
+                                    151 	.globl _TCON
+                                    152 	.globl _PCON
+                                    153 	.globl _DPH
+                                    154 	.globl _DPL
+                                    155 	.globl _SP
+                                    156 	.globl _P0
+                                    157 	.globl _UART_getBaudGeneratorInitValue_PARM_2
+                                    158 	.globl _UART_cmd_multiBaudrate
+                                    159 	.globl _UART_cmd_receive
+                                    160 	.globl _UART_config
+                                    161 	.globl _UART_getBaudGeneratorInitValue
+                                    162 	.globl _UART_getByte
+                                    163 	.globl _UART_isReceived
+                                    164 	.globl _UART_isTransmitted
+                                    165 	.globl _UART_sendByte
+                                    166 	.globl _UART_sendHex
+                                    167 	.globl _UART_sendString
+                                    168 	.globl _UART_setMode
+                                    169 	.globl _UART_switchTim
+                                    170 	.globl _UART_INT_cmd
+                                    171 	.globl _UART_INT_setPriority
+                                    172 ;--------------------------------------------------------
+                                    173 ; special function registers
+                                    174 ;--------------------------------------------------------
+                                    175 	.area RSEG    (ABS,DATA)
+      000000                        176 	.org 0x0000
+                           000080   177 _P0	=	0x0080
+                           000081   178 _SP	=	0x0081
+                           000082   179 _DPL	=	0x0082
+                           000083   180 _DPH	=	0x0083
+                           000087   181 _PCON	=	0x0087
+                           000088   182 _TCON	=	0x0088
+                           000089   183 _TMOD	=	0x0089
+                           00008A   184 _TL0	=	0x008a
+                           00008B   185 _TL1	=	0x008b
+                           00008C   186 _TH0	=	0x008c
+                           00008D   187 _TH1	=	0x008d
+                           000090   188 _P1	=	0x0090
+                           000098   189 _SCON	=	0x0098
+                           000099   190 _SBUF	=	0x0099
+                           0000A0   191 _P2	=	0x00a0
+                           0000A8   192 _IE	=	0x00a8
+                           0000B0   193 _P3	=	0x00b0
+                           0000B8   194 _IP	=	0x00b8
+                           0000D0   195 _PSW	=	0x00d0
+                           0000E0   196 _ACC	=	0x00e0
+                           0000F0   197 _B	=	0x00f0
+                           00008E   198 _AUXR	=	0x008e
+                           0000A2   199 _AUXR1	=	0x00a2
+                           0000A9   200 _SADDR1	=	0x00a9
+                           0000B7   201 _IPH	=	0x00b7
+                           0000C0   202 _XICON	=	0x00c0
+                           0000C8   203 _T2CON	=	0x00c8
+                           0000C9   204 _T2MOD	=	0x00c9
+                           0000CA   205 _RCAP2L	=	0x00ca
+                           0000CB   206 _RCAP2H	=	0x00cb
+                           0000CC   207 _TL2	=	0x00cc
+                           0000CD   208 _TH2	=	0x00cd
+                           0000E1   209 _WDT_CONTR	=	0x00e1
+                           0000E2   210 _ISP_DATA	=	0x00e2
+                           0000E3   211 _ISP_ADDRH	=	0x00e3
+                           0000E4   212 _ISP_ADDRL	=	0x00e4
+                           0000E5   213 _ISP_CMD	=	0x00e5
+                           0000E6   214 _ISP_TRIG	=	0x00e6
+                           0000E7   215 _ISP_CONTR	=	0x00e7
+                           0000E8   216 _P4	=	0x00e8
+                                    217 ;--------------------------------------------------------
+                                    218 ; special function bits
+                                    219 ;--------------------------------------------------------
+                                    220 	.area RSEG    (ABS,DATA)
+      000000                        221 	.org 0x0000
+                           000080   222 _P0_0	=	0x0080
+                           000081   223 _P0_1	=	0x0081
+                           000082   224 _P0_2	=	0x0082
+                           000083   225 _P0_3	=	0x0083
+                           000084   226 _P0_4	=	0x0084
+                           000085   227 _P0_5	=	0x0085
+                           000086   228 _P0_6	=	0x0086
+                           000087   229 _P0_7	=	0x0087
+                           000088   230 _IT0	=	0x0088
+                           000089   231 _IE0	=	0x0089
+                           00008A   232 _IT1	=	0x008a
+                           00008B   233 _IE1	=	0x008b
+                           00008C   234 _TR0	=	0x008c
+                           00008D   235 _TF0	=	0x008d
+                           00008E   236 _TR1	=	0x008e
+                           00008F   237 _TF1	=	0x008f
+                           000090   238 _P1_0	=	0x0090
+                           000091   239 _P1_1	=	0x0091
+                           000092   240 _P1_2	=	0x0092
+                           000093   241 _P1_3	=	0x0093
+                           000094   242 _P1_4	=	0x0094
+                           000095   243 _P1_5	=	0x0095
+                           000096   244 _P1_6	=	0x0096
+                           000097   245 _P1_7	=	0x0097
+                           000098   246 _RI	=	0x0098
+                           000099   247 _TI	=	0x0099
+                           00009A   248 _RB8	=	0x009a
+                           00009B   249 _TB8	=	0x009b
+                           00009C   250 _REN	=	0x009c
+                           00009D   251 _SM2	=	0x009d
+                           00009E   252 _SM1	=	0x009e
+                           00009F   253 _SM0	=	0x009f
+                           0000A0   254 _P2_0	=	0x00a0
+                           0000A1   255 _P2_1	=	0x00a1
+                           0000A2   256 _P2_2	=	0x00a2
+                           0000A3   257 _P2_3	=	0x00a3
+                           0000A4   258 _P2_4	=	0x00a4
+                           0000A5   259 _P2_5	=	0x00a5
+                           0000A6   260 _P2_6	=	0x00a6
+                           0000A7   261 _P2_7	=	0x00a7
+                           0000A8   262 _EX0	=	0x00a8
+                           0000A9   263 _ET0	=	0x00a9
+                           0000AA   264 _EX1	=	0x00aa
+                           0000AB   265 _ET1	=	0x00ab
+                           0000AC   266 _ES	=	0x00ac
+                           0000AF   267 _EA	=	0x00af
+                           0000B0   268 _P3_0	=	0x00b0
+                           0000B1   269 _P3_1	=	0x00b1
+                           0000B2   270 _P3_2	=	0x00b2
+                           0000B3   271 _P3_3	=	0x00b3
+                           0000B4   272 _P3_4	=	0x00b4
+                           0000B5   273 _P3_5	=	0x00b5
+                           0000B6   274 _P3_6	=	0x00b6
+                           0000B7   275 _P3_7	=	0x00b7
+                           0000B0   276 _RXD	=	0x00b0
+                           0000B1   277 _TXD	=	0x00b1
+                           0000B2   278 _INT0	=	0x00b2
+                           0000B3   279 _INT1	=	0x00b3
+                           0000B4   280 _T0	=	0x00b4
+                           0000B5   281 _T1	=	0x00b5
+                           0000B6   282 _WR	=	0x00b6
+                           0000B7   283 _RD	=	0x00b7
+                           0000B8   284 _PX0	=	0x00b8
+                           0000B9   285 _PT0	=	0x00b9
+                           0000BA   286 _PX1	=	0x00ba
+                           0000BB   287 _PT1	=	0x00bb
+                           0000BC   288 _PS	=	0x00bc
+                           0000D0   289 _P	=	0x00d0
+                           0000D1   290 _F1	=	0x00d1
+                           0000D2   291 _OV	=	0x00d2
+                           0000D3   292 _RS0	=	0x00d3
+                           0000D4   293 _RS1	=	0x00d4
+                           0000D5   294 _F0	=	0x00d5
+                           0000D6   295 _AC	=	0x00d6
+                           0000D7   296 _CY	=	0x00d7
+                           0000AD   297 _ET2	=	0x00ad
+                           0000BD   298 _PT2	=	0x00bd
+                           000090   299 _T2	=	0x0090
+                           000091   300 _T2EX	=	0x0091
+                           0000E8   301 _P4_0	=	0x00e8
+                           0000E9   302 _P4_1	=	0x00e9
+                           0000EA   303 _P4_2	=	0x00ea
+                           0000EB   304 _P4_3	=	0x00eb
+                           0000EA   305 _INT3	=	0x00ea
+                           0000EB   306 _INT2	=	0x00eb
+                           0000C8   307 _CPRL2	=	0x00c8
+                           0000C9   308 _T2_CT	=	0x00c9
+                           0000CA   309 _TR2	=	0x00ca
+                           0000CB   310 _EXEN2	=	0x00cb
+                           0000CC   311 _TCLK	=	0x00cc
+                           0000CD   312 _RCLK	=	0x00cd
+                           0000CE   313 _EXF2	=	0x00ce
+                           0000CF   314 _TF2	=	0x00cf
+                           0000C0   315 _IT2	=	0x00c0
+                           0000C1   316 _IE2	=	0x00c1
+                           0000C2   317 _EX2	=	0x00c2
+                           0000C3   318 _PX2	=	0x00c3
+                           0000C4   319 _IT3	=	0x00c4
+                           0000C5   320 _IE3	=	0x00c5
+                           0000C6   321 _EX3	=	0x00c6
+                           0000C7   322 _PX3	=	0x00c7
+                                    323 ;--------------------------------------------------------
+                                    324 ; overlayable register banks
+                                    325 ;--------------------------------------------------------
+                                    326 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        327 	.ds 8
+                                    328 ;--------------------------------------------------------
+                                    329 ; internal ram data
+                                    330 ;--------------------------------------------------------
+                                    331 	.area DSEG    (DATA)
+      000000                        332 _UART_config_uc_10000_48:
+      000000                        333 	.ds 3
+      000003                        334 _UART_config_tc_10000_49:
+      000003                        335 	.ds 6
+      000009                        336 _UART_config_tc2_10000_49:
+      000009                        337 	.ds 8
+      000011                        338 _UART_getBaudGeneratorInitValue_PARM_2:
+      000011                        339 	.ds 1
+      000012                        340 _UART_getBaudGeneratorInitValue_sloc0_1_0:
+      000012                        341 	.ds 4
+                                    342 ;--------------------------------------------------------
+                                    343 ; overlayable items in internal ram
+                                    344 ;--------------------------------------------------------
+                                    345 	.area	OSEG    (OVR,DATA)
+                                    346 	.area	OSEG    (OVR,DATA)
+                                    347 	.area	OSEG    (OVR,DATA)
+                                    348 	.area	OSEG    (OVR,DATA)
+                                    349 	.area	OSEG    (OVR,DATA)
+                                    350 	.area	OSEG    (OVR,DATA)
+                                    351 	.area	OSEG    (OVR,DATA)
+                                    352 	.area	OSEG    (OVR,DATA)
+                                    353 ;--------------------------------------------------------
+                                    354 ; indirectly addressable internal ram data
+                                    355 ;--------------------------------------------------------
+                                    356 	.area ISEG    (DATA)
+                                    357 ;--------------------------------------------------------
+                                    358 ; absolute internal ram data
+                                    359 ;--------------------------------------------------------
+                                    360 	.area IABS    (ABS,DATA)
+                                    361 	.area IABS    (ABS,DATA)
+                                    362 ;--------------------------------------------------------
+                                    363 ; bit data
+                                    364 ;--------------------------------------------------------
+                                    365 	.area BSEG    (BIT)
+      000000                        366 _UART_INT_setPriority_sloc0_1_0:
+      000000                        367 	.ds 1
+                                    368 ;--------------------------------------------------------
+                                    369 ; paged external ram data
+                                    370 ;--------------------------------------------------------
+                                    371 	.area PSEG    (PAG,XDATA)
+                                    372 ;--------------------------------------------------------
+                                    373 ; uninitialized external ram data
+                                    374 ;--------------------------------------------------------
+                                    375 	.area XSEG    (XDATA)
+                                    376 ;--------------------------------------------------------
+                                    377 ; absolute external ram data
+                                    378 ;--------------------------------------------------------
+                                    379 	.area XABS    (ABS,XDATA)
+                                    380 ;--------------------------------------------------------
+                                    381 ; initialized external ram data
+                                    382 ;--------------------------------------------------------
+                                    383 	.area XISEG   (XDATA)
+                                    384 	.area HOME    (CODE)
+                                    385 	.area GSINIT0 (CODE)
+                                    386 	.area GSINIT1 (CODE)
+                                    387 	.area GSINIT2 (CODE)
+                                    388 	.area GSINIT3 (CODE)
+                                    389 	.area GSINIT4 (CODE)
+                                    390 	.area GSINIT5 (CODE)
+                                    391 	.area GSINIT  (CODE)
+                                    392 	.area GSFINAL (CODE)
+                                    393 	.area CSEG    (CODE)
+                                    394 ;--------------------------------------------------------
+                                    395 ; global & static initialisations
+                                    396 ;--------------------------------------------------------
+                                    397 	.area HOME    (CODE)
+                                    398 	.area GSINIT  (CODE)
+                                    399 	.area GSFINAL (CODE)
+                                    400 	.area GSINIT  (CODE)
+                                    401 ;--------------------------------------------------------
+                                    402 ; Home
+                                    403 ;--------------------------------------------------------
+                                    404 	.area HOME    (CODE)
+                                    405 	.area HOME    (CODE)
+                                    406 ;--------------------------------------------------------
+                                    407 ; code
+                                    408 ;--------------------------------------------------------
+                                    409 	.area CSEG    (CODE)
+                                    410 ;------------------------------------------------------------
+                                    411 ;Allocation info for local variables in function 'UART_cmd_multiBaudrate'
+                                    412 ;------------------------------------------------------------
+                                    413 ;a             Allocated to registers r7 
+                                    414 ;------------------------------------------------------------
+                                    415 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:26: void UART_cmd_multiBaudrate(Action a)
+                                    416 ;	-----------------------------------------
+                                    417 ;	 function UART_cmd_multiBaudrate
+                                    418 ;	-----------------------------------------
+      000000                        419 _UART_cmd_multiBaudrate:
+                           000007   420 	ar7 = 0x07
+                           000006   421 	ar6 = 0x06
+                           000005   422 	ar5 = 0x05
+                           000004   423 	ar4 = 0x04
+                           000003   424 	ar3 = 0x03
+                           000002   425 	ar2 = 0x02
+                           000001   426 	ar1 = 0x01
+                           000000   427 	ar0 = 0x00
+      000000 AF 82            [24]  428 	mov	r7, dpl
+                                    429 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:28: CONFB(PCON, BIT_NUM_SMOD, a);
+      000002 74 7F            [12]  430 	mov	a,#0x7f
+      000004 55 87            [12]  431 	anl	a,_PCON
+      000006 FE               [12]  432 	mov	r6,a
+      000007 EF               [12]  433 	mov	a,r7
+      000008 03               [12]  434 	rr	a
+      000009 54 80            [12]  435 	anl	a,#0x80
+      00000B 4E               [12]  436 	orl	a,r6
+      00000C F5 87            [12]  437 	mov	_PCON,a
+                                    438 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:29: }
+      00000E 22               [24]  439 	ret
+                                    440 ;------------------------------------------------------------
+                                    441 ;Allocation info for local variables in function 'UART_cmd_receive'
+                                    442 ;------------------------------------------------------------
+                                    443 ;a             Allocated to registers r7 
+                                    444 ;------------------------------------------------------------
+                                    445 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:41: void UART_cmd_receive(Action a)
+                                    446 ;	-----------------------------------------
+                                    447 ;	 function UART_cmd_receive
+                                    448 ;	-----------------------------------------
+      00000F                        449 _UART_cmd_receive:
+                                    450 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:43: REN = a;
+      00000F E5 82            [12]  451 	mov	a,dpl
+      000011 24 FF            [12]  452 	add	a,#0xff
+      000013 92 9C            [24]  453 	mov	_REN,c
+                                    454 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:44: }
+      000015 22               [24]  455 	ret
+                                    456 ;------------------------------------------------------------
+                                    457 ;Allocation info for local variables in function 'UART_config'
+                                    458 ;------------------------------------------------------------
+                                    459 ;uc            Allocated with name '_UART_config_uc_10000_48'
+                                    460 ;tc            Allocated with name '_UART_config_tc_10000_49'
+                                    461 ;tc2           Allocated with name '_UART_config_tc2_10000_49'
+                                    462 ;------------------------------------------------------------
+                                    463 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:56: void UART_config(UART_configTypeDef *uc)
+                                    464 ;	-----------------------------------------
+                                    465 ;	 function UART_config
+                                    466 ;	-----------------------------------------
+      000016                        467 _UART_config:
+      000016 85 82*00         [24]  468 	mov	_UART_config_uc_10000_48,dpl
+      000019 85 83*01         [24]  469 	mov	(_UART_config_uc_10000_48 + 1),dph
+      00001C 85 F0*02         [24]  470 	mov	(_UART_config_uc_10000_48 + 2),b
+                                    471 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:61: UART_INT_cmd(uc->interruptState);
+      00001F 74 05            [12]  472 	mov	a,#0x05
+      000021 25*00            [12]  473 	add	a, _UART_config_uc_10000_48
+      000023 FA               [12]  474 	mov	r2,a
+      000024 E4               [12]  475 	clr	a
+      000025 35*01            [12]  476 	addc	a, (_UART_config_uc_10000_48 + 1)
+      000027 FB               [12]  477 	mov	r3,a
+      000028 AC*02            [24]  478 	mov	r4,(_UART_config_uc_10000_48 + 2)
+      00002A 8A 82            [24]  479 	mov	dpl,r2
+      00002C 8B 83            [24]  480 	mov	dph,r3
+      00002E 8C F0            [24]  481 	mov	b,r4
+      000030 12r00r00         [24]  482 	lcall	__gptrget
+      000033 F5 82            [12]  483 	mov	dpl,a
+      000035 12r02rCF         [24]  484 	lcall	_UART_INT_cmd
+                                    485 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:62: UART_INT_setPriority(uc->interruptPriority);
+      000038 74 06            [12]  486 	mov	a,#0x06
+      00003A 25*00            [12]  487 	add	a, _UART_config_uc_10000_48
+      00003C FA               [12]  488 	mov	r2,a
+      00003D E4               [12]  489 	clr	a
+      00003E 35*01            [12]  490 	addc	a, (_UART_config_uc_10000_48 + 1)
+      000040 FB               [12]  491 	mov	r3,a
+      000041 AC*02            [24]  492 	mov	r4,(_UART_config_uc_10000_48 + 2)
+      000043 8A 82            [24]  493 	mov	dpl,r2
+      000045 8B 83            [24]  494 	mov	dph,r3
+      000047 8C F0            [24]  495 	mov	b,r4
+      000049 12r00r00         [24]  496 	lcall	__gptrget
+      00004C F5 82            [12]  497 	mov	dpl,a
+      00004E 12r02rD6         [24]  498 	lcall	_UART_INT_setPriority
+                                    499 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:63: UART_cmd_multiBaudrate(uc->multiBaudrate);
+      000051 74 08            [12]  500 	mov	a,#0x08
+      000053 25*00            [12]  501 	add	a, _UART_config_uc_10000_48
+      000055 FA               [12]  502 	mov	r2,a
+      000056 E4               [12]  503 	clr	a
+      000057 35*01            [12]  504 	addc	a, (_UART_config_uc_10000_48 + 1)
+      000059 FB               [12]  505 	mov	r3,a
+      00005A AC*02            [24]  506 	mov	r4,(_UART_config_uc_10000_48 + 2)
+      00005C 8A 82            [24]  507 	mov	dpl,r2
+      00005E 8B 83            [24]  508 	mov	dph,r3
+      000060 8C F0            [24]  509 	mov	b,r4
+      000062 12r00r00         [24]  510 	lcall	__gptrget
+      000065 F5 82            [12]  511 	mov	dpl,a
+      000067 12r00r00         [24]  512 	lcall	_UART_cmd_multiBaudrate
+                                    513 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:64: UART_setMode(uc->mode);
+      00006A 74 07            [12]  514 	mov	a,#0x07
+      00006C 25*00            [12]  515 	add	a, _UART_config_uc_10000_48
+      00006E FA               [12]  516 	mov	r2,a
+      00006F E4               [12]  517 	clr	a
+      000070 35*01            [12]  518 	addc	a, (_UART_config_uc_10000_48 + 1)
+      000072 FB               [12]  519 	mov	r3,a
+      000073 AC*02            [24]  520 	mov	r4,(_UART_config_uc_10000_48 + 2)
+      000075 8A 82            [24]  521 	mov	dpl,r2
+      000077 8B 83            [24]  522 	mov	dph,r3
+      000079 8C F0            [24]  523 	mov	b,r4
+      00007B 12r00r00         [24]  524 	lcall	__gptrget
+      00007E F5 82            [12]  525 	mov	dpl,a
+      000080 12r02rAA         [24]  526 	lcall	_UART_setMode
+                                    527 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:65: UART_cmd_receive(uc->receiveState);
+      000083 74 09            [12]  528 	mov	a,#0x09
+      000085 25*00            [12]  529 	add	a, _UART_config_uc_10000_48
+      000087 FA               [12]  530 	mov	r2,a
+      000088 E4               [12]  531 	clr	a
+      000089 35*01            [12]  532 	addc	a, (_UART_config_uc_10000_48 + 1)
+      00008B FB               [12]  533 	mov	r3,a
+      00008C AC*02            [24]  534 	mov	r4,(_UART_config_uc_10000_48 + 2)
+      00008E 8A 82            [24]  535 	mov	dpl,r2
+      000090 8B 83            [24]  536 	mov	dph,r3
+      000092 8C F0            [24]  537 	mov	b,r4
+      000094 12r00r00         [24]  538 	lcall	__gptrget
+      000097 F5 82            [12]  539 	mov	dpl,a
+      000099 12r00r0F         [24]  540 	lcall	_UART_cmd_receive
+                                    541 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:66: UART_switchTim(uc->baudGenerator);
+      00009C 74 04            [12]  542 	mov	a,#0x04
+      00009E 25*00            [12]  543 	add	a, _UART_config_uc_10000_48
+      0000A0 FA               [12]  544 	mov	r2,a
+      0000A1 E4               [12]  545 	clr	a
+      0000A2 35*01            [12]  546 	addc	a, (_UART_config_uc_10000_48 + 1)
+      0000A4 FB               [12]  547 	mov	r3,a
+      0000A5 AC*02            [24]  548 	mov	r4,(_UART_config_uc_10000_48 + 2)
+      0000A7 8A 82            [24]  549 	mov	dpl,r2
+      0000A9 8B 83            [24]  550 	mov	dph,r3
+      0000AB 8C F0            [24]  551 	mov	b,r4
+      0000AD 12r00r00         [24]  552 	lcall	__gptrget
+      0000B0 F5 82            [12]  553 	mov	dpl,a
+      0000B2 C0 04            [24]  554 	push	ar4
+      0000B4 C0 03            [24]  555 	push	ar3
+      0000B6 C0 02            [24]  556 	push	ar2
+      0000B8 12r02rBA         [24]  557 	lcall	_UART_switchTim
+      0000BB D0 02            [24]  558 	pop	ar2
+      0000BD D0 03            [24]  559 	pop	ar3
+      0000BF D0 04            [24]  560 	pop	ar4
+                                    561 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:68: switch (uc->baudGenerator)
+      0000C1 8A 82            [24]  562 	mov	dpl,r2
+      0000C3 8B 83            [24]  563 	mov	dph,r3
+      0000C5 8C F0            [24]  564 	mov	b,r4
+      0000C7 12r00r00         [24]  565 	lcall	__gptrget
+      0000CA FF               [12]  566 	mov	r7,a
+      0000CB BF 01 02         [24]  567 	cjne	r7,#0x01,00119$
+      0000CE 80 06            [24]  568 	sjmp	00101$
+      0000D0                        569 00119$:
+      0000D0 BF 02 02         [24]  570 	cjne	r7,#0x02,00120$
+      0000D3 80 64            [24]  571 	sjmp	00102$
+      0000D5                        572 00120$:
+      0000D5 22               [24]  573 	ret
+                                    574 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:70: case PERIPH_TIM_1:
+      0000D6                        575 00101$:
+                                    576 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:72: tc.function          = TIM_function_tim;
+      0000D6 75*03 00         [24]  577 	mov	_UART_config_tc_10000_49,#0x00
+                                    578 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:73: tc.interruptState    = DISABLE;
+      0000D9 75*04 00         [24]  579 	mov	(_UART_config_tc_10000_49 + 0x0001),#0x00
+                                    580 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:74: tc.interruptPriority = DISABLE;
+      0000DC 75*05 00         [24]  581 	mov	(_UART_config_tc_10000_49 + 0x0002),#0x00
+                                    582 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:75: tc.mode              = TIM_mode_2;
+      0000DF 75*06 02         [24]  583 	mov	(_UART_config_tc_10000_49 + 0x0003),#0x02
+                                    584 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:76: tc.value             = UART_getBaudGeneratorInitValue(uc->baudrate, PERIPH_TIM_1);
+      0000E2 AD*00            [24]  585 	mov	r5,_UART_config_uc_10000_48
+      0000E4 AE*01            [24]  586 	mov	r6,(_UART_config_uc_10000_48 + 1)
+      0000E6 AF*02            [24]  587 	mov	r7,(_UART_config_uc_10000_48 + 2)
+      0000E8 8D 82            [24]  588 	mov	dpl,r5
+      0000EA 8E 83            [24]  589 	mov	dph,r6
+      0000EC 8F F0            [24]  590 	mov	b,r7
+      0000EE 12r00r00         [24]  591 	lcall	__gptrget
+      0000F1 FD               [12]  592 	mov	r5,a
+      0000F2 A3               [24]  593 	inc	dptr
+      0000F3 12r00r00         [24]  594 	lcall	__gptrget
+      0000F6 FE               [12]  595 	mov	r6,a
+      0000F7 A3               [24]  596 	inc	dptr
+      0000F8 12r00r00         [24]  597 	lcall	__gptrget
+      0000FB FF               [12]  598 	mov	r7,a
+      0000FC A3               [24]  599 	inc	dptr
+      0000FD 12r00r00         [24]  600 	lcall	__gptrget
+      000100 FC               [12]  601 	mov	r4,a
+      000101 75*11 01         [24]  602 	mov	_UART_getBaudGeneratorInitValue_PARM_2,#0x01
+      000104 8D 82            [24]  603 	mov	dpl, r5
+      000106 8E 83            [24]  604 	mov	dph, r6
+      000108 8F F0            [24]  605 	mov	b, r7
+      00010A EC               [12]  606 	mov	a, r4
+      00010B 12r01r98         [24]  607 	lcall	_UART_getBaudGeneratorInitValue
+      00010E E5 82            [12]  608 	mov	a, dpl
+      000110 85 83 F0         [24]  609 	mov	b, dph
+      000113 F5*07            [12]  610 	mov	((_UART_config_tc_10000_49 + 0x0004) + 0),a
+      000115 85 F0*08         [24]  611 	mov	((_UART_config_tc_10000_49 + 0x0004) + 1),b
+                                    612 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:77: TIM2_BAUD_cmd(TIM2_baudClock_receive | TIM2_baudClock_transmit, DISABLE);
+      000118 75*00 00         [24]  613 	mov	_TIM2_BAUD_cmd_PARM_2,#0x00
+      00011B 75 82 03         [24]  614 	mov	dpl, #0x03
+      00011E 12r00r00         [24]  615 	lcall	_TIM2_BAUD_cmd
+                                    616 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:78: TIM_config(PERIPH_TIM_1, &tc);
+      000121 75*00r03         [24]  617 	mov	_TIM_config_PARM_2,#_UART_config_tc_10000_49
+      000124 75*01 00         [24]  618 	mov	(_TIM_config_PARM_2 + 1),#0x00
+      000127 75*02 40         [24]  619 	mov	(_TIM_config_PARM_2 + 2),#0x40
+      00012A 75 82 01         [24]  620 	mov	dpl, #0x01
+      00012D 12r00r00         [24]  621 	lcall	_TIM_config
+                                    622 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:79: TIM_cmd(PERIPH_TIM_1, ENABLE);
+      000130 75*00 01         [24]  623 	mov	_TIM_cmd_PARM_2,#0x01
+      000133 75 82 01         [24]  624 	mov	dpl, #0x01
+                                    625 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:80: } break; 
+                                    626 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:81: case PERIPH_TIM_2:
+      000136 02r00r00         [24]  627 	ljmp	_TIM_cmd
+      000139                        628 00102$:
+                                    629 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:83: tc2.function          = TIM2_function_tim;
+      000139 75*09 00         [24]  630 	mov	_UART_config_tc2_10000_49,#0x00
+                                    631 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:84: tc2.interruptState    = DISABLE;
+      00013C 75*0A 00         [24]  632 	mov	(_UART_config_tc2_10000_49 + 0x0001),#0x00
+                                    633 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:85: tc2.interruptPriority = DISABLE;
+      00013F 75*0B 00         [24]  634 	mov	(_UART_config_tc2_10000_49 + 0x0002),#0x00
+                                    635 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:86: tc2.mode              = TIM2_mode_2;
+      000142 75*0C 30         [24]  636 	mov	(_UART_config_tc2_10000_49 + 0x0003),#0x30
+                                    637 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:87: tc2.value             = 0x00;
+      000145 E4               [12]  638 	clr	a
+      000146 F5*0D            [12]  639 	mov	((_UART_config_tc2_10000_49 + 0x0004) + 0),a
+      000148 F5*0E            [12]  640 	mov	((_UART_config_tc2_10000_49 + 0x0004) + 1),a
+                                    641 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:88: tc2.reloadValue       = UART_getBaudGeneratorInitValue(uc->baudrate, PERIPH_TIM_2);
+      00014A AD*00            [24]  642 	mov	r5,_UART_config_uc_10000_48
+      00014C AE*01            [24]  643 	mov	r6,(_UART_config_uc_10000_48 + 1)
+      00014E AF*02            [24]  644 	mov	r7,(_UART_config_uc_10000_48 + 2)
+      000150 8D 82            [24]  645 	mov	dpl,r5
+      000152 8E 83            [24]  646 	mov	dph,r6
+      000154 8F F0            [24]  647 	mov	b,r7
+      000156 12r00r00         [24]  648 	lcall	__gptrget
+      000159 FD               [12]  649 	mov	r5,a
+      00015A A3               [24]  650 	inc	dptr
+      00015B 12r00r00         [24]  651 	lcall	__gptrget
+      00015E FE               [12]  652 	mov	r6,a
+      00015F A3               [24]  653 	inc	dptr
+      000160 12r00r00         [24]  654 	lcall	__gptrget
+      000163 FF               [12]  655 	mov	r7,a
+      000164 A3               [24]  656 	inc	dptr
+      000165 12r00r00         [24]  657 	lcall	__gptrget
+      000168 FC               [12]  658 	mov	r4,a
+      000169 75*11 02         [24]  659 	mov	_UART_getBaudGeneratorInitValue_PARM_2,#0x02
+      00016C 8D 82            [24]  660 	mov	dpl, r5
+      00016E 8E 83            [24]  661 	mov	dph, r6
+      000170 8F F0            [24]  662 	mov	b, r7
+      000172 EC               [12]  663 	mov	a, r4
+      000173 12r01r98         [24]  664 	lcall	_UART_getBaudGeneratorInitValue
+      000176 E5 82            [12]  665 	mov	a, dpl
+      000178 85 83 F0         [24]  666 	mov	b, dph
+      00017B F5*0F            [12]  667 	mov	((_UART_config_tc2_10000_49 + 0x0006) + 0),a
+      00017D 85 F0*10         [24]  668 	mov	((_UART_config_tc2_10000_49 + 0x0006) + 1),b
+                                    669 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:89: TIM2_BAUD_cmd(TIM2_baudClock_receive | TIM2_baudClock_transmit, ENABLE);
+      000180 75*00 01         [24]  670 	mov	_TIM2_BAUD_cmd_PARM_2,#0x01
+      000183 75 82 03         [24]  671 	mov	dpl, #0x03
+      000186 12r00r00         [24]  672 	lcall	_TIM2_BAUD_cmd
+                                    673 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:90: TIM2_config(&tc2);
+      000189 90r00r09         [24]  674 	mov	dptr,#_UART_config_tc2_10000_49
+      00018C 75 F0 40         [24]  675 	mov	b, #0x40
+      00018F 12r00r00         [24]  676 	lcall	_TIM2_config
+                                    677 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:91: TIM2_cmd(ENABLE);
+      000192 75 82 01         [24]  678 	mov	dpl, #0x01
+                                    679 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:94: }
+                                    680 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:95: }
+      000195 02r00r00         [24]  681 	ljmp	_TIM2_cmd
+                                    682 ;------------------------------------------------------------
+                                    683 ;Allocation info for local variables in function 'UART_getBaudGeneratorInitValue'
+                                    684 ;------------------------------------------------------------
+                                    685 ;tim           Allocated with name '_UART_getBaudGeneratorInitValue_PARM_2'
+                                    686 ;baud          Allocated to registers r4 r5 r6 r7 
+                                    687 ;tmp           Allocated to registers r3 
+                                    688 ;sloc0         Allocated with name '_UART_getBaudGeneratorInitValue_sloc0_1_0'
+                                    689 ;------------------------------------------------------------
+                                    690 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:109: uint16_t UART_getBaudGeneratorInitValue(uint32_t baud, PERIPH_TIM tim)
+                                    691 ;	-----------------------------------------
+                                    692 ;	 function UART_getBaudGeneratorInitValue
+                                    693 ;	-----------------------------------------
+      000198                        694 _UART_getBaudGeneratorInitValue:
+      000198 AC 82            [24]  695 	mov	r4,dpl
+      00019A AD 83            [24]  696 	mov	r5,dph
+      00019C AE F0            [24]  697 	mov	r6,b
+      00019E FF               [12]  698 	mov	r7,a
+                                    699 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:111: uint8_t tmp = 0x00;
+      00019F 7B 00            [12]  700 	mov	r3,#0x00
+                                    701 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:114: switch (tim)
+      0001A1 74 01            [12]  702 	mov	a,#0x01
+      0001A3 B5*11 02         [24]  703 	cjne	a,_UART_getBaudGeneratorInitValue_PARM_2,00146$
+      0001A6 80 0A            [24]  704 	sjmp	00101$
+      0001A8                        705 00146$:
+      0001A8 74 02            [12]  706 	mov	a,#0x02
+      0001AA B5*11 02         [24]  707 	cjne	a,_UART_getBaudGeneratorInitValue_PARM_2,00147$
+      0001AD 80 71            [24]  708 	sjmp	00111$
+      0001AF                        709 00147$:
+      0001AF 02r02r40         [24]  710 	ljmp	00113$
+                                    711 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:116: case PERIPH_TIM_1:
+      0001B2                        712 00101$:
+                                    713 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:118: if (GET_BIT(PCON, SMOD))     /* multi baud rate mode */
+      0001B2 E5 87            [12]  714 	mov	a,_PCON
+      0001B4 30 E7 34         [24]  715 	jnb	acc.7,00109$
+                                    716 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:120: if (baud > MCU_FRE_CLK/MCU_PRESCALER/16)
+      0001B7 C3               [12]  717 	clr	c
+      0001B8 E4               [12]  718 	clr	a
+      0001B9 9C               [12]  719 	subb	a,r4
+      0001BA 74 E1            [12]  720 	mov	a,#0xe1
+      0001BC 9D               [12]  721 	subb	a,r5
+      0001BD E4               [12]  722 	clr	a
+      0001BE 9E               [12]  723 	subb	a,r6
+      0001BF E4               [12]  724 	clr	a
+      0001C0 9F               [12]  725 	subb	a,r7
+      0001C1 50 04            [24]  726 	jnc	00103$
+                                    727 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:122: return 0x0000;     /* baud rate over max value */
+      0001C3 90 00 00         [24]  728 	mov	dptr,#0x0000
+      0001C6 22               [24]  729 	ret
+      0001C7                        730 00103$:
+                                    731 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:126: tmp = (256 - MCU_FRE_CLK/16/MCU_PRESCALER/baud);  
+      0001C7 8C*00            [24]  732 	mov	__divulong_PARM_2,r4
+      0001C9 8D*01            [24]  733 	mov	(__divulong_PARM_2 + 1),r5
+      0001CB 8E*02            [24]  734 	mov	(__divulong_PARM_2 + 2),r6
+      0001CD 8F*03            [24]  735 	mov	(__divulong_PARM_2 + 3),r7
+      0001CF 90 E1 00         [24]  736 	mov	dptr,#0xe100
+      0001D2 E4               [12]  737 	clr	a
+      0001D3 F5 F0            [12]  738 	mov	b,a
+      0001D5 12r00r00         [24]  739 	lcall	__divulong
+      0001D8 85 82*12         [24]  740 	mov	_UART_getBaudGeneratorInitValue_sloc0_1_0,dpl
+      0001DB 85 83*13         [24]  741 	mov	(_UART_getBaudGeneratorInitValue_sloc0_1_0 + 1),dph
+      0001DE 85 F0*14         [24]  742 	mov	(_UART_getBaudGeneratorInitValue_sloc0_1_0 + 2),b
+      0001E1 F5*15            [12]  743 	mov	(_UART_getBaudGeneratorInitValue_sloc0_1_0 + 3),a
+      0001E3 AA*12            [24]  744 	mov	r2,_UART_getBaudGeneratorInitValue_sloc0_1_0
+      0001E5 C3               [12]  745 	clr	c
+      0001E6 E4               [12]  746 	clr	a
+      0001E7 9A               [12]  747 	subb	a,r2
+      0001E8 FB               [12]  748 	mov	r3,a
+      0001E9 80 55            [24]  749 	sjmp	00113$
+      0001EB                        750 00109$:
+                                    751 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:131: if (baud > MCU_FRE_CLK/MCU_PRESCALER/32)
+      0001EB C3               [12]  752 	clr	c
+      0001EC 74 80            [12]  753 	mov	a,#0x80
+      0001EE 9C               [12]  754 	subb	a,r4
+      0001EF 74 70            [12]  755 	mov	a,#0x70
+      0001F1 9D               [12]  756 	subb	a,r5
+      0001F2 E4               [12]  757 	clr	a
+      0001F3 9E               [12]  758 	subb	a,r6
+      0001F4 E4               [12]  759 	clr	a
+      0001F5 9F               [12]  760 	subb	a,r7
+      0001F6 50 04            [24]  761 	jnc	00106$
+                                    762 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:133: return 0x0000;
+      0001F8 90 00 00         [24]  763 	mov	dptr,#0x0000
+      0001FB 22               [24]  764 	ret
+      0001FC                        765 00106$:
+                                    766 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:137: tmp = (256 - MCU_FRE_CLK/32/MCU_PRESCALER/baud);
+      0001FC 8C*00            [24]  767 	mov	__divulong_PARM_2,r4
+      0001FE 8D*01            [24]  768 	mov	(__divulong_PARM_2 + 1),r5
+      000200 8E*02            [24]  769 	mov	(__divulong_PARM_2 + 2),r6
+      000202 8F*03            [24]  770 	mov	(__divulong_PARM_2 + 3),r7
+      000204 90 70 80         [24]  771 	mov	dptr,#0x7080
+      000207 E4               [12]  772 	clr	a
+      000208 F5 F0            [12]  773 	mov	b,a
+      00020A 12r00r00         [24]  774 	lcall	__divulong
+      00020D 85 82*12         [24]  775 	mov	_UART_getBaudGeneratorInitValue_sloc0_1_0,dpl
+      000210 85 83*13         [24]  776 	mov	(_UART_getBaudGeneratorInitValue_sloc0_1_0 + 1),dph
+      000213 85 F0*14         [24]  777 	mov	(_UART_getBaudGeneratorInitValue_sloc0_1_0 + 2),b
+      000216 F5*15            [12]  778 	mov	(_UART_getBaudGeneratorInitValue_sloc0_1_0 + 3),a
+      000218 AA*12            [24]  779 	mov	r2,_UART_getBaudGeneratorInitValue_sloc0_1_0
+      00021A C3               [12]  780 	clr	c
+      00021B E4               [12]  781 	clr	a
+      00021C 9A               [12]  782 	subb	a,r2
+      00021D FB               [12]  783 	mov	r3,a
+                                    784 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:140: } break;
+                                    785 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:141: case PERIPH_TIM_2:
+      00021E 80 20            [24]  786 	sjmp	00113$
+      000220                        787 00111$:
+                                    788 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:146: return ((65536 - (MCU_FRE_CLK/32/baud)));
+      000220 8C*00            [24]  789 	mov	__divulong_PARM_2,r4
+      000222 8D*01            [24]  790 	mov	(__divulong_PARM_2 + 1),r5
+      000224 8E*02            [24]  791 	mov	(__divulong_PARM_2 + 2),r6
+      000226 8F*03            [24]  792 	mov	(__divulong_PARM_2 + 3),r7
+      000228 90 46 00         [24]  793 	mov	dptr,#0x4600
+      00022B 75 F0 05         [24]  794 	mov	b, #0x05
+      00022E E4               [12]  795 	clr	a
+      00022F 12r00r00         [24]  796 	lcall	__divulong
+      000232 AC 82            [24]  797 	mov	r4, dpl
+      000234 AD 83            [24]  798 	mov	r5, dph
+      000236 C3               [12]  799 	clr	c
+      000237 E4               [12]  800 	clr	a
+      000238 9C               [12]  801 	subb	a,r4
+      000239 F5 82            [12]  802 	mov	dpl,a
+      00023B E4               [12]  803 	clr	a
+      00023C 9D               [12]  804 	subb	a,r5
+      00023D F5 83            [12]  805 	mov	dph,a
+                                    806 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:152: }
+      00023F 22               [24]  807 	ret
+      000240                        808 00113$:
+                                    809 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:154: return (tmp << 0x8) | tmp;
+      000240 7F 00            [12]  810 	mov	r7,#0x00
+      000242 8B 06            [24]  811 	mov	ar6,r3
+      000244 E4               [12]  812 	clr	a
+      000245 42 03            [12]  813 	orl	ar3,a
+      000247 EE               [12]  814 	mov	a,r6
+      000248 42 07            [12]  815 	orl	ar7,a
+      00024A 8B 82            [24]  816 	mov	dpl,r3
+      00024C 8F 83            [24]  817 	mov	dph,r7
+                                    818 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:155: }
+      00024E 22               [24]  819 	ret
+                                    820 ;------------------------------------------------------------
+                                    821 ;Allocation info for local variables in function 'UART_getByte'
+                                    822 ;------------------------------------------------------------
+                                    823 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:167: byte UART_getByte(void)
+                                    824 ;	-----------------------------------------
+                                    825 ;	 function UART_getByte
+                                    826 ;	-----------------------------------------
+      00024F                        827 _UART_getByte:
+                                    828 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:169: return SBUF;
+      00024F 85 99 82         [24]  829 	mov	dpl, _SBUF
+                                    830 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:170: }
+      000252 22               [24]  831 	ret
+                                    832 ;------------------------------------------------------------
+                                    833 ;Allocation info for local variables in function 'UART_isReceived'
+                                    834 ;------------------------------------------------------------
+                                    835 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:182: FunctionalState UART_isReceived(void)
+                                    836 ;	-----------------------------------------
+                                    837 ;	 function UART_isReceived
+                                    838 ;	-----------------------------------------
+      000253                        839 _UART_isReceived:
+                                    840 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:184: return (FunctionalState)RI;
+      000253 A2 98            [12]  841 	mov	c,_RI
+      000255 E4               [12]  842 	clr	a
+      000256 33               [12]  843 	rlc	a
+      000257 F5 82            [12]  844 	mov	dpl,a
+                                    845 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:185: }
+      000259 22               [24]  846 	ret
+                                    847 ;------------------------------------------------------------
+                                    848 ;Allocation info for local variables in function 'UART_isTransmitted'
+                                    849 ;------------------------------------------------------------
+                                    850 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:197: FunctionalState UART_isTransmitted(void)
+                                    851 ;	-----------------------------------------
+                                    852 ;	 function UART_isTransmitted
+                                    853 ;	-----------------------------------------
+      00025A                        854 _UART_isTransmitted:
+                                    855 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:199: return (FunctionalState)TI;
+      00025A A2 99            [12]  856 	mov	c,_TI
+      00025C E4               [12]  857 	clr	a
+      00025D 33               [12]  858 	rlc	a
+      00025E F5 82            [12]  859 	mov	dpl,a
+                                    860 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:200: }
+      000260 22               [24]  861 	ret
+                                    862 ;------------------------------------------------------------
+                                    863 ;Allocation info for local variables in function 'UART_sendByte'
+                                    864 ;------------------------------------------------------------
+                                    865 ;dat           Allocated to registers 
+                                    866 ;------------------------------------------------------------
+                                    867 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:212: void UART_sendByte(byte dat)
+                                    868 ;	-----------------------------------------
+                                    869 ;	 function UART_sendByte
+                                    870 ;	-----------------------------------------
+      000261                        871 _UART_sendByte:
+      000261 85 82 99         [24]  872 	mov	_SBUF,dpl
+                                    873 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:215: while (!TI);
+      000264                        874 00101$:
+                                    875 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:216: TI = RESET;
+                                    876 ;	assignBit
+      000264 10 99 02         [24]  877 	jbc	_TI,00118$
+      000267 80 FB            [24]  878 	sjmp	00101$
+      000269                        879 00118$:
+                                    880 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:217: }
+      000269 22               [24]  881 	ret
+                                    882 ;------------------------------------------------------------
+                                    883 ;Allocation info for local variables in function 'UART_sendHex'
+                                    884 ;------------------------------------------------------------
+                                    885 ;hex           Allocated to registers r7 
+                                    886 ;------------------------------------------------------------
+                                    887 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:229: void UART_sendHex(uint8_t hex)
+                                    888 ;	-----------------------------------------
+                                    889 ;	 function UART_sendHex
+                                    890 ;	-----------------------------------------
+      00026A                        891 _UART_sendHex:
+                                    892 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:231: UART_sendByte(hexTable[hex >> 0x4]);
+      00026A E5 82            [12]  893 	mov	a,dpl
+      00026C FF               [12]  894 	mov	r7,a
+      00026D C4               [12]  895 	swap	a
+      00026E 54 0F            [12]  896 	anl	a,#0x0f
+      000270 90r00r00         [24]  897 	mov	dptr,#_hexTable
+      000273 93               [24]  898 	movc	a,@a+dptr
+      000274 F5 82            [12]  899 	mov	dpl,a
+      000276 C0 07            [24]  900 	push	ar7
+      000278 12r02r61         [24]  901 	lcall	_UART_sendByte
+      00027B D0 07            [24]  902 	pop	ar7
+                                    903 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:232: UART_sendByte(hexTable[hex & 0xF]);
+      00027D 74 0F            [12]  904 	mov	a,#0x0f
+      00027F 5F               [12]  905 	anl	a,r7
+      000280 90r00r00         [24]  906 	mov	dptr,#_hexTable
+      000283 93               [24]  907 	movc	a,@a+dptr
+      000284 F5 82            [12]  908 	mov	dpl,a
+                                    909 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:233: }
+      000286 02r02r61         [24]  910 	ljmp	_UART_sendByte
+                                    911 ;------------------------------------------------------------
+                                    912 ;Allocation info for local variables in function 'UART_sendString'
+                                    913 ;------------------------------------------------------------
+                                    914 ;str           Allocated to registers 
+                                    915 ;------------------------------------------------------------
+                                    916 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:245: void UART_sendString(char *str)
+                                    917 ;	-----------------------------------------
+                                    918 ;	 function UART_sendString
+                                    919 ;	-----------------------------------------
+      000289                        920 _UART_sendString:
+      000289 AD 82            [24]  921 	mov	r5, dpl
+      00028B AE 83            [24]  922 	mov	r6, dph
+      00028D AF F0            [24]  923 	mov	r7, b
+                                    924 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:247: while (*str != '\0')
+      00028F                        925 00104$:
+      00028F 8D 82            [24]  926 	mov	dpl,r5
+      000291 8E 83            [24]  927 	mov	dph,r6
+      000293 8F F0            [24]  928 	mov	b,r7
+      000295 12r00r00         [24]  929 	lcall	__gptrget
+      000298 FC               [12]  930 	mov	r4,a
+      000299 60 0E            [24]  931 	jz	00107$
+                                    932 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:249: SBUF = *str;
+      00029B 8C 99            [24]  933 	mov	_SBUF,r4
+                                    934 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:250: while (!TI);
+      00029D                        935 00101$:
+                                    936 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:251: TI = RESET;          /* reset flag */
+                                    937 ;	assignBit
+      00029D 10 99 02         [24]  938 	jbc	_TI,00135$
+      0002A0 80 FB            [24]  939 	sjmp	00101$
+      0002A2                        940 00135$:
+                                    941 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:252: str++;
+      0002A2 0D               [12]  942 	inc	r5
+      0002A3 BD 00 E9         [24]  943 	cjne	r5,#0x00,00104$
+      0002A6 0E               [12]  944 	inc	r6
+      0002A7 80 E6            [24]  945 	sjmp	00104$
+      0002A9                        946 00107$:
+                                    947 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:254: }
+      0002A9 22               [24]  948 	ret
+                                    949 ;------------------------------------------------------------
+                                    950 ;Allocation info for local variables in function 'UART_setMode'
+                                    951 ;------------------------------------------------------------
+                                    952 ;mode          Allocated to registers r7 
+                                    953 ;------------------------------------------------------------
+                                    954 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:266: void UART_setMode(UART_mode mode)
+                                    955 ;	-----------------------------------------
+                                    956 ;	 function UART_setMode
+                                    957 ;	-----------------------------------------
+      0002AA                        958 _UART_setMode:
+      0002AA AF 82            [24]  959 	mov	r7, dpl
+                                    960 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:268: SCON = (SCON & 0x3F) | ((uint8_t)mode << 0x6);
+      0002AC E5 98            [12]  961 	mov	a,_SCON
+      0002AE 54 3F            [12]  962 	anl	a,#0x3f
+      0002B0 FE               [12]  963 	mov	r6,a
+      0002B1 EF               [12]  964 	mov	a,r7
+      0002B2 03               [12]  965 	rr	a
+      0002B3 03               [12]  966 	rr	a
+      0002B4 54 C0            [12]  967 	anl	a,#0xc0
+      0002B6 4E               [12]  968 	orl	a,r6
+      0002B7 F5 98            [12]  969 	mov	_SCON,a
+                                    970 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:269: }
+      0002B9 22               [24]  971 	ret
+                                    972 ;------------------------------------------------------------
+                                    973 ;Allocation info for local variables in function 'UART_switchTim'
+                                    974 ;------------------------------------------------------------
+                                    975 ;tim           Allocated to registers r7 
+                                    976 ;------------------------------------------------------------
+                                    977 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:281: void UART_switchTim(PERIPH_TIM tim)
+                                    978 ;	-----------------------------------------
+                                    979 ;	 function UART_switchTim
+                                    980 ;	-----------------------------------------
+      0002BA                        981 _UART_switchTim:
+      0002BA AF 82            [24]  982 	mov	r7, dpl
+                                    983 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:283: if (tim == PERIPH_TIM_1)
+      0002BC BF 01 04         [24]  984 	cjne	r7,#0x01,00104$
+                                    985 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:285: T2CON = T2CON & 0xCF;
+      0002BF 53 C8 CF         [24]  986 	anl	_T2CON,#0xcf
+      0002C2 22               [24]  987 	ret
+      0002C3                        988 00104$:
+                                    989 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:287: else if (tim == PERIPH_TIM_2)
+      0002C3 BF 02 08         [24]  990 	cjne	r7,#0x02,00106$
+                                    991 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:289: T2CON = (T2CON & 0xCF) | 0x30;
+      0002C6 E5 C8            [12]  992 	mov	a,_T2CON
+      0002C8 54 CF            [12]  993 	anl	a,#0xcf
+      0002CA 44 30            [12]  994 	orl	a,#0x30
+      0002CC F5 C8            [12]  995 	mov	_T2CON,a
+      0002CE                        996 00106$:
+                                    997 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:291: }
+      0002CE 22               [24]  998 	ret
+                                    999 ;------------------------------------------------------------
+                                   1000 ;Allocation info for local variables in function 'UART_INT_cmd'
+                                   1001 ;------------------------------------------------------------
+                                   1002 ;a             Allocated to registers r7 
+                                   1003 ;------------------------------------------------------------
+                                   1004 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:303: void UART_INT_cmd(Action a)
+                                   1005 ;	-----------------------------------------
+                                   1006 ;	 function UART_INT_cmd
+                                   1007 ;	-----------------------------------------
+      0002CF                       1008 _UART_INT_cmd:
+                                   1009 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:305: ES = a;
+      0002CF E5 82            [12] 1010 	mov	a,dpl
+      0002D1 24 FF            [12] 1011 	add	a,#0xff
+      0002D3 92 AC            [24] 1012 	mov	_ES,c
+                                   1013 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:306: }
+      0002D5 22               [24] 1014 	ret
+                                   1015 ;------------------------------------------------------------
+                                   1016 ;Allocation info for local variables in function 'UART_INT_setPriority'
+                                   1017 ;------------------------------------------------------------
+                                   1018 ;p             Allocated to registers r7 
+                                   1019 ;------------------------------------------------------------
+                                   1020 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:318: void UART_INT_setPriority(UTIL_interruptPriority p)
+                                   1021 ;	-----------------------------------------
+                                   1022 ;	 function UART_INT_setPriority
+                                   1023 ;	-----------------------------------------
+      0002D6                       1024 _UART_INT_setPriority:
+                                   1025 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:320: PS = TESTB(p, 0);
+      0002D6 E5 82            [12] 1026 	mov	a,dpl
+      0002D8 FF               [12] 1027 	mov	r7,a
+      0002D9 54 01            [12] 1028 	anl	a,#0x01
+      0002DB B4 01 00         [24] 1029 	cjne	a,#0x01,00103$
+      0002DE                       1030 00103$:
+      0002DE B3               [12] 1031 	cpl	c
+      0002DF 92*00            [24] 1032 	mov	_UART_INT_setPriority_sloc0_1_0,c
+      0002E1 E4               [12] 1033 	clr	a
+      0002E2 33               [12] 1034 	rlc	a
+      0002E3 24 FF            [12] 1035 	add	a,#0xff
+      0002E5 92 BC            [24] 1036 	mov	_PS,c
+                                   1037 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:321: CONFB(IPH, BIT_NUM_PSH, TESTB(p, 1));
+      0002E7 74 EF            [12] 1038 	mov	a,#0xef
+      0002E9 55 B7            [12] 1039 	anl	a,_IPH
+      0002EB FE               [12] 1040 	mov	r6,a
+      0002EC EF               [12] 1041 	mov	a,r7
+      0002ED 03               [12] 1042 	rr	a
+      0002EE 54 01            [12] 1043 	anl	a,#0x01
+      0002F0 B4 01 00         [24] 1044 	cjne	a,#0x01,00104$
+      0002F3                       1045 00104$:
+      0002F3 B3               [12] 1046 	cpl	c
+      0002F4 92*00            [24] 1047 	mov	_UART_INT_setPriority_sloc0_1_0,c
+      0002F6 E4               [12] 1048 	clr	a
+      0002F7 33               [12] 1049 	rlc	a
+      0002F8 C4               [12] 1050 	swap	a
+      0002F9 54 F0            [12] 1051 	anl	a,#0xf0
+      0002FB 4E               [12] 1052 	orl	a,r6
+      0002FC F5 B7            [12] 1053 	mov	_IPH,a
+                                   1054 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/uart.c:322: }
+      0002FE 22               [24] 1055 	ret
+                                   1056 	.area CSEG    (CODE)
+                                   1057 	.area CONST   (CODE)
+                                   1058 	.area CONST   (CODE)
+      000000                       1059 _hexTable:
+      000000 30                    1060 	.db #0x30	;  48	'0'
+      000001 31                    1061 	.db #0x31	;  49	'1'
+      000002 32                    1062 	.db #0x32	;  50	'2'
+      000003 33                    1063 	.db #0x33	;  51	'3'
+      000004 34                    1064 	.db #0x34	;  52	'4'
+      000005 35                    1065 	.db #0x35	;  53	'5'
+      000006 36                    1066 	.db #0x36	;  54	'6'
+      000007 37                    1067 	.db #0x37	;  55	'7'
+      000008 38                    1068 	.db #0x38	;  56	'8'
+      000009 39                    1069 	.db #0x39	;  57	'9'
+      00000A 41                    1070 	.db #0x41	;  65	'A'
+      00000B 42                    1071 	.db #0x42	;  66	'B'
+      00000C 43                    1072 	.db #0x43	;  67	'C'
+      00000D 44                    1073 	.db #0x44	;  68	'D'
+      00000E 45                    1074 	.db #0x45	;  69	'E'
+      00000F 46                    1075 	.db #0x46	;  70	'F'
+                                   1076 	.area CSEG    (CODE)
+                                   1077 	.area XINIT   (CODE)
+                                   1078 	.area CABS    (ABS,CODE)

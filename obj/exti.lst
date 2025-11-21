@@ -1,0 +1,708 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler
+                                      3 ; Version 4.5.0 #15242 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module exti
+                                      6 	
+                                      7 	.optsdcc -mmcs51 --model-small
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _EXTI_setPriority_PARM_2
+                                     12 	.globl _EXTI_setMode_PARM_2
+                                     13 	.globl _EXTI_cmd_PARM_2
+                                     14 	.globl _PX3
+                                     15 	.globl _EX3
+                                     16 	.globl _IE3
+                                     17 	.globl _IT3
+                                     18 	.globl _PX2
+                                     19 	.globl _EX2
+                                     20 	.globl _IE2
+                                     21 	.globl _IT2
+                                     22 	.globl _TF2
+                                     23 	.globl _EXF2
+                                     24 	.globl _RCLK
+                                     25 	.globl _TCLK
+                                     26 	.globl _EXEN2
+                                     27 	.globl _TR2
+                                     28 	.globl _T2_CT
+                                     29 	.globl _CPRL2
+                                     30 	.globl _INT2
+                                     31 	.globl _INT3
+                                     32 	.globl _P4_3
+                                     33 	.globl _P4_2
+                                     34 	.globl _P4_1
+                                     35 	.globl _P4_0
+                                     36 	.globl _T2EX
+                                     37 	.globl _T2
+                                     38 	.globl _PT2
+                                     39 	.globl _ET2
+                                     40 	.globl _CY
+                                     41 	.globl _AC
+                                     42 	.globl _F0
+                                     43 	.globl _RS1
+                                     44 	.globl _RS0
+                                     45 	.globl _OV
+                                     46 	.globl _F1
+                                     47 	.globl _P
+                                     48 	.globl _PS
+                                     49 	.globl _PT1
+                                     50 	.globl _PX1
+                                     51 	.globl _PT0
+                                     52 	.globl _PX0
+                                     53 	.globl _RD
+                                     54 	.globl _WR
+                                     55 	.globl _T1
+                                     56 	.globl _T0
+                                     57 	.globl _INT1
+                                     58 	.globl _INT0
+                                     59 	.globl _TXD
+                                     60 	.globl _RXD
+                                     61 	.globl _P3_7
+                                     62 	.globl _P3_6
+                                     63 	.globl _P3_5
+                                     64 	.globl _P3_4
+                                     65 	.globl _P3_3
+                                     66 	.globl _P3_2
+                                     67 	.globl _P3_1
+                                     68 	.globl _P3_0
+                                     69 	.globl _EA
+                                     70 	.globl _ES
+                                     71 	.globl _ET1
+                                     72 	.globl _EX1
+                                     73 	.globl _ET0
+                                     74 	.globl _EX0
+                                     75 	.globl _P2_7
+                                     76 	.globl _P2_6
+                                     77 	.globl _P2_5
+                                     78 	.globl _P2_4
+                                     79 	.globl _P2_3
+                                     80 	.globl _P2_2
+                                     81 	.globl _P2_1
+                                     82 	.globl _P2_0
+                                     83 	.globl _SM0
+                                     84 	.globl _SM1
+                                     85 	.globl _SM2
+                                     86 	.globl _REN
+                                     87 	.globl _TB8
+                                     88 	.globl _RB8
+                                     89 	.globl _TI
+                                     90 	.globl _RI
+                                     91 	.globl _P1_7
+                                     92 	.globl _P1_6
+                                     93 	.globl _P1_5
+                                     94 	.globl _P1_4
+                                     95 	.globl _P1_3
+                                     96 	.globl _P1_2
+                                     97 	.globl _P1_1
+                                     98 	.globl _P1_0
+                                     99 	.globl _TF1
+                                    100 	.globl _TR1
+                                    101 	.globl _TF0
+                                    102 	.globl _TR0
+                                    103 	.globl _IE1
+                                    104 	.globl _IT1
+                                    105 	.globl _IE0
+                                    106 	.globl _IT0
+                                    107 	.globl _P0_7
+                                    108 	.globl _P0_6
+                                    109 	.globl _P0_5
+                                    110 	.globl _P0_4
+                                    111 	.globl _P0_3
+                                    112 	.globl _P0_2
+                                    113 	.globl _P0_1
+                                    114 	.globl _P0_0
+                                    115 	.globl _P4
+                                    116 	.globl _ISP_CONTR
+                                    117 	.globl _ISP_TRIG
+                                    118 	.globl _ISP_CMD
+                                    119 	.globl _ISP_ADDRL
+                                    120 	.globl _ISP_ADDRH
+                                    121 	.globl _ISP_DATA
+                                    122 	.globl _WDT_CONTR
+                                    123 	.globl _TH2
+                                    124 	.globl _TL2
+                                    125 	.globl _RCAP2H
+                                    126 	.globl _RCAP2L
+                                    127 	.globl _T2MOD
+                                    128 	.globl _T2CON
+                                    129 	.globl _XICON
+                                    130 	.globl _IPH
+                                    131 	.globl _SADDR1
+                                    132 	.globl _AUXR1
+                                    133 	.globl _AUXR
+                                    134 	.globl _B
+                                    135 	.globl _ACC
+                                    136 	.globl _PSW
+                                    137 	.globl _IP
+                                    138 	.globl _P3
+                                    139 	.globl _IE
+                                    140 	.globl _P2
+                                    141 	.globl _SBUF
+                                    142 	.globl _SCON
+                                    143 	.globl _P1
+                                    144 	.globl _TH1
+                                    145 	.globl _TH0
+                                    146 	.globl _TL1
+                                    147 	.globl _TL0
+                                    148 	.globl _TMOD
+                                    149 	.globl _TCON
+                                    150 	.globl _PCON
+                                    151 	.globl _DPH
+                                    152 	.globl _DPL
+                                    153 	.globl _SP
+                                    154 	.globl _P0
+                                    155 	.globl _EXTI_config_PARM_2
+                                    156 	.globl _EXTI_config
+                                    157 	.globl _EXTI_cmd
+                                    158 	.globl _EXTI_setMode
+                                    159 	.globl _EXTI_setPriority
+                                    160 ;--------------------------------------------------------
+                                    161 ; special function registers
+                                    162 ;--------------------------------------------------------
+                                    163 	.area RSEG    (ABS,DATA)
+      000000                        164 	.org 0x0000
+                           000080   165 _P0	=	0x0080
+                           000081   166 _SP	=	0x0081
+                           000082   167 _DPL	=	0x0082
+                           000083   168 _DPH	=	0x0083
+                           000087   169 _PCON	=	0x0087
+                           000088   170 _TCON	=	0x0088
+                           000089   171 _TMOD	=	0x0089
+                           00008A   172 _TL0	=	0x008a
+                           00008B   173 _TL1	=	0x008b
+                           00008C   174 _TH0	=	0x008c
+                           00008D   175 _TH1	=	0x008d
+                           000090   176 _P1	=	0x0090
+                           000098   177 _SCON	=	0x0098
+                           000099   178 _SBUF	=	0x0099
+                           0000A0   179 _P2	=	0x00a0
+                           0000A8   180 _IE	=	0x00a8
+                           0000B0   181 _P3	=	0x00b0
+                           0000B8   182 _IP	=	0x00b8
+                           0000D0   183 _PSW	=	0x00d0
+                           0000E0   184 _ACC	=	0x00e0
+                           0000F0   185 _B	=	0x00f0
+                           00008E   186 _AUXR	=	0x008e
+                           0000A2   187 _AUXR1	=	0x00a2
+                           0000A9   188 _SADDR1	=	0x00a9
+                           0000B7   189 _IPH	=	0x00b7
+                           0000C0   190 _XICON	=	0x00c0
+                           0000C8   191 _T2CON	=	0x00c8
+                           0000C9   192 _T2MOD	=	0x00c9
+                           0000CA   193 _RCAP2L	=	0x00ca
+                           0000CB   194 _RCAP2H	=	0x00cb
+                           0000CC   195 _TL2	=	0x00cc
+                           0000CD   196 _TH2	=	0x00cd
+                           0000E1   197 _WDT_CONTR	=	0x00e1
+                           0000E2   198 _ISP_DATA	=	0x00e2
+                           0000E3   199 _ISP_ADDRH	=	0x00e3
+                           0000E4   200 _ISP_ADDRL	=	0x00e4
+                           0000E5   201 _ISP_CMD	=	0x00e5
+                           0000E6   202 _ISP_TRIG	=	0x00e6
+                           0000E7   203 _ISP_CONTR	=	0x00e7
+                           0000E8   204 _P4	=	0x00e8
+                                    205 ;--------------------------------------------------------
+                                    206 ; special function bits
+                                    207 ;--------------------------------------------------------
+                                    208 	.area RSEG    (ABS,DATA)
+      000000                        209 	.org 0x0000
+                           000080   210 _P0_0	=	0x0080
+                           000081   211 _P0_1	=	0x0081
+                           000082   212 _P0_2	=	0x0082
+                           000083   213 _P0_3	=	0x0083
+                           000084   214 _P0_4	=	0x0084
+                           000085   215 _P0_5	=	0x0085
+                           000086   216 _P0_6	=	0x0086
+                           000087   217 _P0_7	=	0x0087
+                           000088   218 _IT0	=	0x0088
+                           000089   219 _IE0	=	0x0089
+                           00008A   220 _IT1	=	0x008a
+                           00008B   221 _IE1	=	0x008b
+                           00008C   222 _TR0	=	0x008c
+                           00008D   223 _TF0	=	0x008d
+                           00008E   224 _TR1	=	0x008e
+                           00008F   225 _TF1	=	0x008f
+                           000090   226 _P1_0	=	0x0090
+                           000091   227 _P1_1	=	0x0091
+                           000092   228 _P1_2	=	0x0092
+                           000093   229 _P1_3	=	0x0093
+                           000094   230 _P1_4	=	0x0094
+                           000095   231 _P1_5	=	0x0095
+                           000096   232 _P1_6	=	0x0096
+                           000097   233 _P1_7	=	0x0097
+                           000098   234 _RI	=	0x0098
+                           000099   235 _TI	=	0x0099
+                           00009A   236 _RB8	=	0x009a
+                           00009B   237 _TB8	=	0x009b
+                           00009C   238 _REN	=	0x009c
+                           00009D   239 _SM2	=	0x009d
+                           00009E   240 _SM1	=	0x009e
+                           00009F   241 _SM0	=	0x009f
+                           0000A0   242 _P2_0	=	0x00a0
+                           0000A1   243 _P2_1	=	0x00a1
+                           0000A2   244 _P2_2	=	0x00a2
+                           0000A3   245 _P2_3	=	0x00a3
+                           0000A4   246 _P2_4	=	0x00a4
+                           0000A5   247 _P2_5	=	0x00a5
+                           0000A6   248 _P2_6	=	0x00a6
+                           0000A7   249 _P2_7	=	0x00a7
+                           0000A8   250 _EX0	=	0x00a8
+                           0000A9   251 _ET0	=	0x00a9
+                           0000AA   252 _EX1	=	0x00aa
+                           0000AB   253 _ET1	=	0x00ab
+                           0000AC   254 _ES	=	0x00ac
+                           0000AF   255 _EA	=	0x00af
+                           0000B0   256 _P3_0	=	0x00b0
+                           0000B1   257 _P3_1	=	0x00b1
+                           0000B2   258 _P3_2	=	0x00b2
+                           0000B3   259 _P3_3	=	0x00b3
+                           0000B4   260 _P3_4	=	0x00b4
+                           0000B5   261 _P3_5	=	0x00b5
+                           0000B6   262 _P3_6	=	0x00b6
+                           0000B7   263 _P3_7	=	0x00b7
+                           0000B0   264 _RXD	=	0x00b0
+                           0000B1   265 _TXD	=	0x00b1
+                           0000B2   266 _INT0	=	0x00b2
+                           0000B3   267 _INT1	=	0x00b3
+                           0000B4   268 _T0	=	0x00b4
+                           0000B5   269 _T1	=	0x00b5
+                           0000B6   270 _WR	=	0x00b6
+                           0000B7   271 _RD	=	0x00b7
+                           0000B8   272 _PX0	=	0x00b8
+                           0000B9   273 _PT0	=	0x00b9
+                           0000BA   274 _PX1	=	0x00ba
+                           0000BB   275 _PT1	=	0x00bb
+                           0000BC   276 _PS	=	0x00bc
+                           0000D0   277 _P	=	0x00d0
+                           0000D1   278 _F1	=	0x00d1
+                           0000D2   279 _OV	=	0x00d2
+                           0000D3   280 _RS0	=	0x00d3
+                           0000D4   281 _RS1	=	0x00d4
+                           0000D5   282 _F0	=	0x00d5
+                           0000D6   283 _AC	=	0x00d6
+                           0000D7   284 _CY	=	0x00d7
+                           0000AD   285 _ET2	=	0x00ad
+                           0000BD   286 _PT2	=	0x00bd
+                           000090   287 _T2	=	0x0090
+                           000091   288 _T2EX	=	0x0091
+                           0000E8   289 _P4_0	=	0x00e8
+                           0000E9   290 _P4_1	=	0x00e9
+                           0000EA   291 _P4_2	=	0x00ea
+                           0000EB   292 _P4_3	=	0x00eb
+                           0000EA   293 _INT3	=	0x00ea
+                           0000EB   294 _INT2	=	0x00eb
+                           0000C8   295 _CPRL2	=	0x00c8
+                           0000C9   296 _T2_CT	=	0x00c9
+                           0000CA   297 _TR2	=	0x00ca
+                           0000CB   298 _EXEN2	=	0x00cb
+                           0000CC   299 _TCLK	=	0x00cc
+                           0000CD   300 _RCLK	=	0x00cd
+                           0000CE   301 _EXF2	=	0x00ce
+                           0000CF   302 _TF2	=	0x00cf
+                           0000C0   303 _IT2	=	0x00c0
+                           0000C1   304 _IE2	=	0x00c1
+                           0000C2   305 _EX2	=	0x00c2
+                           0000C3   306 _PX2	=	0x00c3
+                           0000C4   307 _IT3	=	0x00c4
+                           0000C5   308 _IE3	=	0x00c5
+                           0000C6   309 _EX3	=	0x00c6
+                           0000C7   310 _PX3	=	0x00c7
+                                    311 ;--------------------------------------------------------
+                                    312 ; overlayable register banks
+                                    313 ;--------------------------------------------------------
+                                    314 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        315 	.ds 8
+                                    316 ;--------------------------------------------------------
+                                    317 ; internal ram data
+                                    318 ;--------------------------------------------------------
+                                    319 	.area DSEG    (DATA)
+      000000                        320 _EXTI_config_PARM_2:
+      000000                        321 	.ds 3
+                                    322 ;--------------------------------------------------------
+                                    323 ; overlayable items in internal ram
+                                    324 ;--------------------------------------------------------
+                                    325 	.area	OSEG    (OVR,DATA)
+      000000                        326 _EXTI_cmd_PARM_2:
+      000000                        327 	.ds 1
+                                    328 	.area	OSEG    (OVR,DATA)
+      000000                        329 _EXTI_setMode_PARM_2:
+      000000                        330 	.ds 1
+                                    331 	.area	OSEG    (OVR,DATA)
+      000000                        332 _EXTI_setPriority_PARM_2:
+      000000                        333 	.ds 1
+                                    334 ;--------------------------------------------------------
+                                    335 ; indirectly addressable internal ram data
+                                    336 ;--------------------------------------------------------
+                                    337 	.area ISEG    (DATA)
+                                    338 ;--------------------------------------------------------
+                                    339 ; absolute internal ram data
+                                    340 ;--------------------------------------------------------
+                                    341 	.area IABS    (ABS,DATA)
+                                    342 	.area IABS    (ABS,DATA)
+                                    343 ;--------------------------------------------------------
+                                    344 ; bit data
+                                    345 ;--------------------------------------------------------
+                                    346 	.area BSEG    (BIT)
+      000000                        347 _EXTI_setPriority_sloc0_1_0:
+      000000                        348 	.ds 1
+                                    349 ;--------------------------------------------------------
+                                    350 ; paged external ram data
+                                    351 ;--------------------------------------------------------
+                                    352 	.area PSEG    (PAG,XDATA)
+                                    353 ;--------------------------------------------------------
+                                    354 ; uninitialized external ram data
+                                    355 ;--------------------------------------------------------
+                                    356 	.area XSEG    (XDATA)
+                                    357 ;--------------------------------------------------------
+                                    358 ; absolute external ram data
+                                    359 ;--------------------------------------------------------
+                                    360 	.area XABS    (ABS,XDATA)
+                                    361 ;--------------------------------------------------------
+                                    362 ; initialized external ram data
+                                    363 ;--------------------------------------------------------
+                                    364 	.area XISEG   (XDATA)
+                                    365 	.area HOME    (CODE)
+                                    366 	.area GSINIT0 (CODE)
+                                    367 	.area GSINIT1 (CODE)
+                                    368 	.area GSINIT2 (CODE)
+                                    369 	.area GSINIT3 (CODE)
+                                    370 	.area GSINIT4 (CODE)
+                                    371 	.area GSINIT5 (CODE)
+                                    372 	.area GSINIT  (CODE)
+                                    373 	.area GSFINAL (CODE)
+                                    374 	.area CSEG    (CODE)
+                                    375 ;--------------------------------------------------------
+                                    376 ; global & static initialisations
+                                    377 ;--------------------------------------------------------
+                                    378 	.area HOME    (CODE)
+                                    379 	.area GSINIT  (CODE)
+                                    380 	.area GSFINAL (CODE)
+                                    381 	.area GSINIT  (CODE)
+                                    382 ;--------------------------------------------------------
+                                    383 ; Home
+                                    384 ;--------------------------------------------------------
+                                    385 	.area HOME    (CODE)
+                                    386 	.area HOME    (CODE)
+                                    387 ;--------------------------------------------------------
+                                    388 ; code
+                                    389 ;--------------------------------------------------------
+                                    390 	.area CSEG    (CODE)
+                                    391 ;------------------------------------------------------------
+                                    392 ;Allocation info for local variables in function 'EXTI_config'
+                                    393 ;------------------------------------------------------------
+                                    394 ;ec            Allocated with name '_EXTI_config_PARM_2'
+                                    395 ;exti          Allocated to registers r7 
+                                    396 ;------------------------------------------------------------
+                                    397 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:28: void EXTI_config(PERIPH_EXTI exti, EXTI_configTypeDef *ec)
+                                    398 ;	-----------------------------------------
+                                    399 ;	 function EXTI_config
+                                    400 ;	-----------------------------------------
+      000000                        401 _EXTI_config:
+                           000007   402 	ar7 = 0x07
+                           000006   403 	ar6 = 0x06
+                           000005   404 	ar5 = 0x05
+                           000004   405 	ar4 = 0x04
+                           000003   406 	ar3 = 0x03
+                           000002   407 	ar2 = 0x02
+                           000001   408 	ar1 = 0x01
+                           000000   409 	ar0 = 0x00
+      000000 AF 82            [24]  410 	mov	r7, dpl
+                                    411 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:30: EXTI_setMode(exti, ec->mode);
+      000002 AC*00            [24]  412 	mov	r4,_EXTI_config_PARM_2
+      000004 AD*01            [24]  413 	mov	r5,(_EXTI_config_PARM_2 + 1)
+      000006 AE*02            [24]  414 	mov	r6,(_EXTI_config_PARM_2 + 2)
+      000008 8C 01            [24]  415 	mov	ar1,r4
+      00000A 8D 02            [24]  416 	mov	ar2,r5
+      00000C 8E 03            [24]  417 	mov	ar3,r6
+      00000E 89 82            [24]  418 	mov	dpl,r1
+      000010 8A 83            [24]  419 	mov	dph,r2
+      000012 8B F0            [24]  420 	mov	b,r3
+      000014 12r00r00         [24]  421 	lcall	__gptrget
+      000017 F5*00            [12]  422 	mov	_EXTI_setMode_PARM_2,a
+      000019 8F 82            [24]  423 	mov	dpl, r7
+      00001B C0 07            [24]  424 	push	ar7
+      00001D C0 06            [24]  425 	push	ar6
+      00001F C0 05            [24]  426 	push	ar5
+      000021 C0 04            [24]  427 	push	ar4
+      000023 12r00r74         [24]  428 	lcall	_EXTI_setMode
+      000026 D0 04            [24]  429 	pop	ar4
+      000028 D0 05            [24]  430 	pop	ar5
+      00002A D0 06            [24]  431 	pop	ar6
+      00002C D0 07            [24]  432 	pop	ar7
+                                    433 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:31: EXTI_setPriority(exti, ec->priority);
+      00002E 0C               [12]  434 	inc	r4
+      00002F BC 00 01         [24]  435 	cjne	r4,#0x00,00103$
+      000032 0D               [12]  436 	inc	r5
+      000033                        437 00103$:
+      000033 8C 82            [24]  438 	mov	dpl,r4
+      000035 8D 83            [24]  439 	mov	dph,r5
+      000037 8E F0            [24]  440 	mov	b,r6
+      000039 12r00r00         [24]  441 	lcall	__gptrget
+      00003C F5*00            [12]  442 	mov	_EXTI_setPriority_PARM_2,a
+      00003E 8F 82            [24]  443 	mov	dpl, r7
+                                    444 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:32: }
+      000040 02r00rA5         [24]  445 	ljmp	_EXTI_setPriority
+                                    446 ;------------------------------------------------------------
+                                    447 ;Allocation info for local variables in function 'EXTI_cmd'
+                                    448 ;------------------------------------------------------------
+                                    449 ;a             Allocated with name '_EXTI_cmd_PARM_2'
+                                    450 ;exti          Allocated to registers r7 
+                                    451 ;------------------------------------------------------------
+                                    452 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:45: void EXTI_cmd(PERIPH_EXTI exti, Action a)
+                                    453 ;	-----------------------------------------
+                                    454 ;	 function EXTI_cmd
+                                    455 ;	-----------------------------------------
+      000043                        456 _EXTI_cmd:
+                                    457 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:47: switch (exti)
+      000043 E5 82            [12]  458 	mov	a,dpl
+      000045 FF               [12]  459 	mov	r7,a
+      000046 24 FC            [12]  460 	add	a,#0xff - 0x03
+      000048 40 29            [24]  461 	jc	00107$
+      00004A EF               [12]  462 	mov	a,r7
+      00004B 2F               [12]  463 	add	a,r7
+                                    464 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:49: case PERIPH_EXTI_0: EX0 = a; break;
+      00004C 90r00r50         [24]  465 	mov	dptr,#00116$
+      00004F 73               [24]  466 	jmp	@a+dptr
+      000050                        467 00116$:
+      000050 80 06            [24]  468 	sjmp	00101$
+      000052 80 0B            [24]  469 	sjmp	00102$
+      000054 80 10            [24]  470 	sjmp	00103$
+      000056 80 15            [24]  471 	sjmp	00104$
+      000058                        472 00101$:
+      000058 E5*00            [12]  473 	mov	a,_EXTI_cmd_PARM_2
+      00005A 24 FF            [12]  474 	add	a,#0xff
+      00005C 92 A8            [24]  475 	mov	_EX0,c
+                                    476 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:50: case PERIPH_EXTI_1: EX1 = a; break;
+      00005E 22               [24]  477 	ret
+      00005F                        478 00102$:
+      00005F E5*00            [12]  479 	mov	a,_EXTI_cmd_PARM_2
+      000061 24 FF            [12]  480 	add	a,#0xff
+      000063 92 AA            [24]  481 	mov	_EX1,c
+                                    482 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:51: case PERIPH_EXTI_2: EX2 = a; break;
+      000065 22               [24]  483 	ret
+      000066                        484 00103$:
+      000066 E5*00            [12]  485 	mov	a,_EXTI_cmd_PARM_2
+      000068 24 FF            [12]  486 	add	a,#0xff
+      00006A 92 C2            [24]  487 	mov	_EX2,c
+                                    488 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:52: case PERIPH_EXTI_3: EX3 = a; break;
+      00006C 22               [24]  489 	ret
+      00006D                        490 00104$:
+      00006D E5*00            [12]  491 	mov	a,_EXTI_cmd_PARM_2
+      00006F 24 FF            [12]  492 	add	a,#0xff
+      000071 92 C6            [24]  493 	mov	_EX3,c
+                                    494 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:54: }
+      000073                        495 00107$:
+                                    496 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:55: }
+      000073 22               [24]  497 	ret
+                                    498 ;------------------------------------------------------------
+                                    499 ;Allocation info for local variables in function 'EXTI_setMode'
+                                    500 ;------------------------------------------------------------
+                                    501 ;mod           Allocated with name '_EXTI_setMode_PARM_2'
+                                    502 ;exti          Allocated to registers r7 
+                                    503 ;------------------------------------------------------------
+                                    504 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:68: void EXTI_setMode(PERIPH_EXTI exti, EXTI_mode mod)
+                                    505 ;	-----------------------------------------
+                                    506 ;	 function EXTI_setMode
+                                    507 ;	-----------------------------------------
+      000074                        508 _EXTI_setMode:
+                                    509 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:70: switch (exti)
+      000074 E5 82            [12]  510 	mov	a,dpl
+      000076 FF               [12]  511 	mov	r7,a
+      000077 24 FC            [12]  512 	add	a,#0xff - 0x03
+      000079 40 29            [24]  513 	jc	00107$
+      00007B EF               [12]  514 	mov	a,r7
+      00007C 2F               [12]  515 	add	a,r7
+                                    516 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:72: case PERIPH_EXTI_0: IT0 = mod; break;
+      00007D 90r00r81         [24]  517 	mov	dptr,#00116$
+      000080 73               [24]  518 	jmp	@a+dptr
+      000081                        519 00116$:
+      000081 80 06            [24]  520 	sjmp	00101$
+      000083 80 0B            [24]  521 	sjmp	00102$
+      000085 80 10            [24]  522 	sjmp	00103$
+      000087 80 15            [24]  523 	sjmp	00104$
+      000089                        524 00101$:
+      000089 E5*00            [12]  525 	mov	a,_EXTI_setMode_PARM_2
+      00008B 24 FF            [12]  526 	add	a,#0xff
+      00008D 92 88            [24]  527 	mov	_IT0,c
+                                    528 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:73: case PERIPH_EXTI_1: IT1 = mod; break;
+      00008F 22               [24]  529 	ret
+      000090                        530 00102$:
+      000090 E5*00            [12]  531 	mov	a,_EXTI_setMode_PARM_2
+      000092 24 FF            [12]  532 	add	a,#0xff
+      000094 92 8A            [24]  533 	mov	_IT1,c
+                                    534 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:74: case PERIPH_EXTI_2: IT2 = mod; break;
+      000096 22               [24]  535 	ret
+      000097                        536 00103$:
+      000097 E5*00            [12]  537 	mov	a,_EXTI_setMode_PARM_2
+      000099 24 FF            [12]  538 	add	a,#0xff
+      00009B 92 C0            [24]  539 	mov	_IT2,c
+                                    540 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:75: case PERIPH_EXTI_3: IT3 = mod; break;
+      00009D 22               [24]  541 	ret
+      00009E                        542 00104$:
+      00009E E5*00            [12]  543 	mov	a,_EXTI_setMode_PARM_2
+      0000A0 24 FF            [12]  544 	add	a,#0xff
+      0000A2 92 C4            [24]  545 	mov	_IT3,c
+                                    546 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:77: }
+      0000A4                        547 00107$:
+                                    548 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:78: }
+      0000A4 22               [24]  549 	ret
+                                    550 ;------------------------------------------------------------
+                                    551 ;Allocation info for local variables in function 'EXTI_setPriority'
+                                    552 ;------------------------------------------------------------
+                                    553 ;p             Allocated with name '_EXTI_setPriority_PARM_2'
+                                    554 ;exti          Allocated to registers r7 
+                                    555 ;------------------------------------------------------------
+                                    556 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:91: void EXTI_setPriority(PERIPH_EXTI exti, UTIL_interruptPriority p)
+                                    557 ;	-----------------------------------------
+                                    558 ;	 function EXTI_setPriority
+                                    559 ;	-----------------------------------------
+      0000A5                        560 _EXTI_setPriority:
+                                    561 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:93: switch (exti)
+      0000A5 E5 82            [12]  562 	mov	a,dpl
+      0000A7 FF               [12]  563 	mov	r7,a
+      0000A8 24 FC            [12]  564 	add	a,#0xff - 0x03
+      0000AA 50 01            [24]  565 	jnc	00115$
+      0000AC 22               [24]  566 	ret
+      0000AD                        567 00115$:
+      0000AD EF               [12]  568 	mov	a,r7
+      0000AE 2F               [12]  569 	add	a,r7
+                                    570 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:95: case PERIPH_EXTI_0:
+      0000AF 90r00rB3         [24]  571 	mov	dptr,#00116$
+      0000B2 73               [24]  572 	jmp	@a+dptr
+      0000B3                        573 00116$:
+      0000B3 80 06            [24]  574 	sjmp	00101$
+      0000B5 80 2A            [24]  575 	sjmp	00102$
+      0000B7 80 52            [24]  576 	sjmp	00103$
+      0000B9 80 7A            [24]  577 	sjmp	00104$
+      0000BB                        578 00101$:
+                                    579 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:97: PX0 = TESTB(p, 0);
+      0000BB E5*00            [12]  580 	mov	a,_EXTI_setPriority_PARM_2
+      0000BD 54 01            [12]  581 	anl	a,#0x01
+      0000BF B4 01 00         [24]  582 	cjne	a,#0x01,00117$
+      0000C2                        583 00117$:
+      0000C2 B3               [12]  584 	cpl	c
+      0000C3 92*00            [24]  585 	mov	_EXTI_setPriority_sloc0_1_0,c
+      0000C5 E4               [12]  586 	clr	a
+      0000C6 33               [12]  587 	rlc	a
+      0000C7 24 FF            [12]  588 	add	a,#0xff
+      0000C9 92 B8            [24]  589 	mov	_PX0,c
+                                    590 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:98: CONFB(IPH, BIT_NUM_PX0H, TESTB(p, 1));
+      0000CB 74 FE            [12]  591 	mov	a,#0xfe
+      0000CD 55 B7            [12]  592 	anl	a,_IPH
+      0000CF FF               [12]  593 	mov	r7,a
+      0000D0 E5*00            [12]  594 	mov	a,_EXTI_setPriority_PARM_2
+      0000D2 03               [12]  595 	rr	a
+      0000D3 54 01            [12]  596 	anl	a,#0x01
+      0000D5 B4 01 00         [24]  597 	cjne	a,#0x01,00118$
+      0000D8                        598 00118$:
+      0000D8 B3               [12]  599 	cpl	c
+      0000D9 92*00            [24]  600 	mov	_EXTI_setPriority_sloc0_1_0,c
+      0000DB E4               [12]  601 	clr	a
+      0000DC 33               [12]  602 	rlc	a
+      0000DD 4F               [12]  603 	orl	a,r7
+      0000DE F5 B7            [12]  604 	mov	_IPH,a
+                                    605 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:99: } break;
+      0000E0 22               [24]  606 	ret
+                                    607 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:100: case PERIPH_EXTI_1:
+      0000E1                        608 00102$:
+                                    609 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:102: PX1 = TESTB(p, 0);
+      0000E1 E5*00            [12]  610 	mov	a,_EXTI_setPriority_PARM_2
+      0000E3 54 01            [12]  611 	anl	a,#0x01
+      0000E5 B4 01 00         [24]  612 	cjne	a,#0x01,00119$
+      0000E8                        613 00119$:
+      0000E8 B3               [12]  614 	cpl	c
+      0000E9 92*00            [24]  615 	mov	_EXTI_setPriority_sloc0_1_0,c
+      0000EB E4               [12]  616 	clr	a
+      0000EC 33               [12]  617 	rlc	a
+      0000ED 24 FF            [12]  618 	add	a,#0xff
+      0000EF 92 BA            [24]  619 	mov	_PX1,c
+                                    620 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:103: CONFB(IPH, BIT_NUM_PX1H, TESTB(p, 1));
+      0000F1 74 FB            [12]  621 	mov	a,#0xfb
+      0000F3 55 B7            [12]  622 	anl	a,_IPH
+      0000F5 FF               [12]  623 	mov	r7,a
+      0000F6 E5*00            [12]  624 	mov	a,_EXTI_setPriority_PARM_2
+      0000F8 03               [12]  625 	rr	a
+      0000F9 54 01            [12]  626 	anl	a,#0x01
+      0000FB B4 01 00         [24]  627 	cjne	a,#0x01,00120$
+      0000FE                        628 00120$:
+      0000FE B3               [12]  629 	cpl	c
+      0000FF 92*00            [24]  630 	mov	_EXTI_setPriority_sloc0_1_0,c
+      000101 E4               [12]  631 	clr	a
+      000102 33               [12]  632 	rlc	a
+      000103 25 E0            [12]  633 	add	a,acc
+      000105 25 E0            [12]  634 	add	a,acc
+      000107 4F               [12]  635 	orl	a,r7
+      000108 F5 B7            [12]  636 	mov	_IPH,a
+                                    637 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:104: } break;
+                                    638 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:105: case PERIPH_EXTI_2:
+      00010A 22               [24]  639 	ret
+      00010B                        640 00103$:
+                                    641 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:107: PX2 = TESTB(p, 0);
+      00010B E5*00            [12]  642 	mov	a,_EXTI_setPriority_PARM_2
+      00010D 54 01            [12]  643 	anl	a,#0x01
+      00010F B4 01 00         [24]  644 	cjne	a,#0x01,00121$
+      000112                        645 00121$:
+      000112 B3               [12]  646 	cpl	c
+      000113 92*00            [24]  647 	mov	_EXTI_setPriority_sloc0_1_0,c
+      000115 E4               [12]  648 	clr	a
+      000116 33               [12]  649 	rlc	a
+      000117 24 FF            [12]  650 	add	a,#0xff
+      000119 92 C3            [24]  651 	mov	_PX2,c
+                                    652 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:108: CONFB(IPH, BIT_NUM_PX2H, TESTB(p, 1));
+      00011B 74 BF            [12]  653 	mov	a,#0xbf
+      00011D 55 B7            [12]  654 	anl	a,_IPH
+      00011F FF               [12]  655 	mov	r7,a
+      000120 E5*00            [12]  656 	mov	a,_EXTI_setPriority_PARM_2
+      000122 03               [12]  657 	rr	a
+      000123 54 01            [12]  658 	anl	a,#0x01
+      000125 B4 01 00         [24]  659 	cjne	a,#0x01,00122$
+      000128                        660 00122$:
+      000128 B3               [12]  661 	cpl	c
+      000129 92*00            [24]  662 	mov	_EXTI_setPriority_sloc0_1_0,c
+      00012B E4               [12]  663 	clr	a
+      00012C 33               [12]  664 	rlc	a
+      00012D 03               [12]  665 	rr	a
+      00012E 03               [12]  666 	rr	a
+      00012F 54 C0            [12]  667 	anl	a,#0xc0
+      000131 4F               [12]  668 	orl	a,r7
+      000132 F5 B7            [12]  669 	mov	_IPH,a
+                                    670 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:109: } break;
+                                    671 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:110: case PERIPH_EXTI_3:
+      000134 22               [24]  672 	ret
+      000135                        673 00104$:
+                                    674 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:112: PX3 = TESTB(p, 0);
+      000135 E5*00            [12]  675 	mov	a,_EXTI_setPriority_PARM_2
+      000137 54 01            [12]  676 	anl	a,#0x01
+      000139 B4 01 00         [24]  677 	cjne	a,#0x01,00123$
+      00013C                        678 00123$:
+      00013C B3               [12]  679 	cpl	c
+      00013D 92*00            [24]  680 	mov	_EXTI_setPriority_sloc0_1_0,c
+      00013F E4               [12]  681 	clr	a
+      000140 33               [12]  682 	rlc	a
+      000141 24 FF            [12]  683 	add	a,#0xff
+      000143 92 C7            [24]  684 	mov	_PX3,c
+                                    685 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:113: CONFB(IPH, BIT_NUM_PX3H, TESTB(p, 1));
+      000145 74 7F            [12]  686 	mov	a,#0x7f
+      000147 55 B7            [12]  687 	anl	a,_IPH
+      000149 FF               [12]  688 	mov	r7,a
+      00014A E5*00            [12]  689 	mov	a,_EXTI_setPriority_PARM_2
+      00014C 03               [12]  690 	rr	a
+      00014D 54 01            [12]  691 	anl	a,#0x01
+      00014F B4 01 00         [24]  692 	cjne	a,#0x01,00124$
+      000152                        693 00124$:
+      000152 B3               [12]  694 	cpl	c
+      000153 92*00            [24]  695 	mov	_EXTI_setPriority_sloc0_1_0,c
+      000155 E4               [12]  696 	clr	a
+      000156 33               [12]  697 	rlc	a
+      000157 03               [12]  698 	rr	a
+      000158 54 80            [12]  699 	anl	a,#0x80
+      00015A 4F               [12]  700 	orl	a,r7
+      00015B F5 B7            [12]  701 	mov	_IPH,a
+                                    702 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:116: }
+                                    703 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/exti.c:117: }
+      00015D 22               [24]  704 	ret
+                                    705 	.area CSEG    (CODE)
+                                    706 	.area CONST   (CODE)
+                                    707 	.area XINIT   (CODE)
+                                    708 	.area CABS    (ABS,CODE)

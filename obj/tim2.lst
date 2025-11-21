@@ -1,0 +1,863 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler
+                                      3 ; Version 4.5.0 #15242 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module tim2
+                                      6 	
+                                      7 	.optsdcc -mmcs51 --model-small
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _TIM2_BAUD_cmd_PARM_2
+                                     12 	.globl _PX3
+                                     13 	.globl _EX3
+                                     14 	.globl _IE3
+                                     15 	.globl _IT3
+                                     16 	.globl _PX2
+                                     17 	.globl _EX2
+                                     18 	.globl _IE2
+                                     19 	.globl _IT2
+                                     20 	.globl _TF2
+                                     21 	.globl _EXF2
+                                     22 	.globl _RCLK
+                                     23 	.globl _TCLK
+                                     24 	.globl _EXEN2
+                                     25 	.globl _TR2
+                                     26 	.globl _T2_CT
+                                     27 	.globl _CPRL2
+                                     28 	.globl _INT2
+                                     29 	.globl _INT3
+                                     30 	.globl _P4_3
+                                     31 	.globl _P4_2
+                                     32 	.globl _P4_1
+                                     33 	.globl _P4_0
+                                     34 	.globl _T2EX
+                                     35 	.globl _T2
+                                     36 	.globl _PT2
+                                     37 	.globl _ET2
+                                     38 	.globl _CY
+                                     39 	.globl _AC
+                                     40 	.globl _F0
+                                     41 	.globl _RS1
+                                     42 	.globl _RS0
+                                     43 	.globl _OV
+                                     44 	.globl _F1
+                                     45 	.globl _P
+                                     46 	.globl _PS
+                                     47 	.globl _PT1
+                                     48 	.globl _PX1
+                                     49 	.globl _PT0
+                                     50 	.globl _PX0
+                                     51 	.globl _RD
+                                     52 	.globl _WR
+                                     53 	.globl _T1
+                                     54 	.globl _T0
+                                     55 	.globl _INT1
+                                     56 	.globl _INT0
+                                     57 	.globl _TXD
+                                     58 	.globl _RXD
+                                     59 	.globl _P3_7
+                                     60 	.globl _P3_6
+                                     61 	.globl _P3_5
+                                     62 	.globl _P3_4
+                                     63 	.globl _P3_3
+                                     64 	.globl _P3_2
+                                     65 	.globl _P3_1
+                                     66 	.globl _P3_0
+                                     67 	.globl _EA
+                                     68 	.globl _ES
+                                     69 	.globl _ET1
+                                     70 	.globl _EX1
+                                     71 	.globl _ET0
+                                     72 	.globl _EX0
+                                     73 	.globl _P2_7
+                                     74 	.globl _P2_6
+                                     75 	.globl _P2_5
+                                     76 	.globl _P2_4
+                                     77 	.globl _P2_3
+                                     78 	.globl _P2_2
+                                     79 	.globl _P2_1
+                                     80 	.globl _P2_0
+                                     81 	.globl _SM0
+                                     82 	.globl _SM1
+                                     83 	.globl _SM2
+                                     84 	.globl _REN
+                                     85 	.globl _TB8
+                                     86 	.globl _RB8
+                                     87 	.globl _TI
+                                     88 	.globl _RI
+                                     89 	.globl _P1_7
+                                     90 	.globl _P1_6
+                                     91 	.globl _P1_5
+                                     92 	.globl _P1_4
+                                     93 	.globl _P1_3
+                                     94 	.globl _P1_2
+                                     95 	.globl _P1_1
+                                     96 	.globl _P1_0
+                                     97 	.globl _TF1
+                                     98 	.globl _TR1
+                                     99 	.globl _TF0
+                                    100 	.globl _TR0
+                                    101 	.globl _IE1
+                                    102 	.globl _IT1
+                                    103 	.globl _IE0
+                                    104 	.globl _IT0
+                                    105 	.globl _P0_7
+                                    106 	.globl _P0_6
+                                    107 	.globl _P0_5
+                                    108 	.globl _P0_4
+                                    109 	.globl _P0_3
+                                    110 	.globl _P0_2
+                                    111 	.globl _P0_1
+                                    112 	.globl _P0_0
+                                    113 	.globl _P4
+                                    114 	.globl _ISP_CONTR
+                                    115 	.globl _ISP_TRIG
+                                    116 	.globl _ISP_CMD
+                                    117 	.globl _ISP_ADDRL
+                                    118 	.globl _ISP_ADDRH
+                                    119 	.globl _ISP_DATA
+                                    120 	.globl _WDT_CONTR
+                                    121 	.globl _TH2
+                                    122 	.globl _TL2
+                                    123 	.globl _RCAP2H
+                                    124 	.globl _RCAP2L
+                                    125 	.globl _T2MOD
+                                    126 	.globl _T2CON
+                                    127 	.globl _XICON
+                                    128 	.globl _IPH
+                                    129 	.globl _SADDR1
+                                    130 	.globl _AUXR1
+                                    131 	.globl _AUXR
+                                    132 	.globl _B
+                                    133 	.globl _ACC
+                                    134 	.globl _PSW
+                                    135 	.globl _IP
+                                    136 	.globl _P3
+                                    137 	.globl _IE
+                                    138 	.globl _P2
+                                    139 	.globl _SBUF
+                                    140 	.globl _SCON
+                                    141 	.globl _P1
+                                    142 	.globl _TH1
+                                    143 	.globl _TH0
+                                    144 	.globl _TL1
+                                    145 	.globl _TL0
+                                    146 	.globl _TMOD
+                                    147 	.globl _TCON
+                                    148 	.globl _PCON
+                                    149 	.globl _DPH
+                                    150 	.globl _DPL
+                                    151 	.globl _SP
+                                    152 	.globl _P0
+                                    153 	.globl _TIM2_calculateValue
+                                    154 	.globl _TIM2_clearFlag
+                                    155 	.globl _TIM2_cmd
+                                    156 	.globl _TIM2_config
+                                    157 	.globl _TIM2_getCaptureValue
+                                    158 	.globl _TIM2_getValue
+                                    159 	.globl _TIM2_isExternalEvent
+                                    160 	.globl _TIM2_isOverflow
+                                    161 	.globl _TIM2_setFunction
+                                    162 	.globl _TIM2_setMode
+                                    163 	.globl _TIM2_setReloadValue
+                                    164 	.globl _TIM2_setValue
+                                    165 	.globl _TIM2_BAUD_cmd
+                                    166 	.globl _TIM2_INT_cmd
+                                    167 	.globl _TIM2_INT_setPriority
+                                    168 	.globl _TIM2_T2EX_cmd
+                                    169 ;--------------------------------------------------------
+                                    170 ; special function registers
+                                    171 ;--------------------------------------------------------
+                                    172 	.area RSEG    (ABS,DATA)
+      000000                        173 	.org 0x0000
+                           000080   174 _P0	=	0x0080
+                           000081   175 _SP	=	0x0081
+                           000082   176 _DPL	=	0x0082
+                           000083   177 _DPH	=	0x0083
+                           000087   178 _PCON	=	0x0087
+                           000088   179 _TCON	=	0x0088
+                           000089   180 _TMOD	=	0x0089
+                           00008A   181 _TL0	=	0x008a
+                           00008B   182 _TL1	=	0x008b
+                           00008C   183 _TH0	=	0x008c
+                           00008D   184 _TH1	=	0x008d
+                           000090   185 _P1	=	0x0090
+                           000098   186 _SCON	=	0x0098
+                           000099   187 _SBUF	=	0x0099
+                           0000A0   188 _P2	=	0x00a0
+                           0000A8   189 _IE	=	0x00a8
+                           0000B0   190 _P3	=	0x00b0
+                           0000B8   191 _IP	=	0x00b8
+                           0000D0   192 _PSW	=	0x00d0
+                           0000E0   193 _ACC	=	0x00e0
+                           0000F0   194 _B	=	0x00f0
+                           00008E   195 _AUXR	=	0x008e
+                           0000A2   196 _AUXR1	=	0x00a2
+                           0000A9   197 _SADDR1	=	0x00a9
+                           0000B7   198 _IPH	=	0x00b7
+                           0000C0   199 _XICON	=	0x00c0
+                           0000C8   200 _T2CON	=	0x00c8
+                           0000C9   201 _T2MOD	=	0x00c9
+                           0000CA   202 _RCAP2L	=	0x00ca
+                           0000CB   203 _RCAP2H	=	0x00cb
+                           0000CC   204 _TL2	=	0x00cc
+                           0000CD   205 _TH2	=	0x00cd
+                           0000E1   206 _WDT_CONTR	=	0x00e1
+                           0000E2   207 _ISP_DATA	=	0x00e2
+                           0000E3   208 _ISP_ADDRH	=	0x00e3
+                           0000E4   209 _ISP_ADDRL	=	0x00e4
+                           0000E5   210 _ISP_CMD	=	0x00e5
+                           0000E6   211 _ISP_TRIG	=	0x00e6
+                           0000E7   212 _ISP_CONTR	=	0x00e7
+                           0000E8   213 _P4	=	0x00e8
+                                    214 ;--------------------------------------------------------
+                                    215 ; special function bits
+                                    216 ;--------------------------------------------------------
+                                    217 	.area RSEG    (ABS,DATA)
+      000000                        218 	.org 0x0000
+                           000080   219 _P0_0	=	0x0080
+                           000081   220 _P0_1	=	0x0081
+                           000082   221 _P0_2	=	0x0082
+                           000083   222 _P0_3	=	0x0083
+                           000084   223 _P0_4	=	0x0084
+                           000085   224 _P0_5	=	0x0085
+                           000086   225 _P0_6	=	0x0086
+                           000087   226 _P0_7	=	0x0087
+                           000088   227 _IT0	=	0x0088
+                           000089   228 _IE0	=	0x0089
+                           00008A   229 _IT1	=	0x008a
+                           00008B   230 _IE1	=	0x008b
+                           00008C   231 _TR0	=	0x008c
+                           00008D   232 _TF0	=	0x008d
+                           00008E   233 _TR1	=	0x008e
+                           00008F   234 _TF1	=	0x008f
+                           000090   235 _P1_0	=	0x0090
+                           000091   236 _P1_1	=	0x0091
+                           000092   237 _P1_2	=	0x0092
+                           000093   238 _P1_3	=	0x0093
+                           000094   239 _P1_4	=	0x0094
+                           000095   240 _P1_5	=	0x0095
+                           000096   241 _P1_6	=	0x0096
+                           000097   242 _P1_7	=	0x0097
+                           000098   243 _RI	=	0x0098
+                           000099   244 _TI	=	0x0099
+                           00009A   245 _RB8	=	0x009a
+                           00009B   246 _TB8	=	0x009b
+                           00009C   247 _REN	=	0x009c
+                           00009D   248 _SM2	=	0x009d
+                           00009E   249 _SM1	=	0x009e
+                           00009F   250 _SM0	=	0x009f
+                           0000A0   251 _P2_0	=	0x00a0
+                           0000A1   252 _P2_1	=	0x00a1
+                           0000A2   253 _P2_2	=	0x00a2
+                           0000A3   254 _P2_3	=	0x00a3
+                           0000A4   255 _P2_4	=	0x00a4
+                           0000A5   256 _P2_5	=	0x00a5
+                           0000A6   257 _P2_6	=	0x00a6
+                           0000A7   258 _P2_7	=	0x00a7
+                           0000A8   259 _EX0	=	0x00a8
+                           0000A9   260 _ET0	=	0x00a9
+                           0000AA   261 _EX1	=	0x00aa
+                           0000AB   262 _ET1	=	0x00ab
+                           0000AC   263 _ES	=	0x00ac
+                           0000AF   264 _EA	=	0x00af
+                           0000B0   265 _P3_0	=	0x00b0
+                           0000B1   266 _P3_1	=	0x00b1
+                           0000B2   267 _P3_2	=	0x00b2
+                           0000B3   268 _P3_3	=	0x00b3
+                           0000B4   269 _P3_4	=	0x00b4
+                           0000B5   270 _P3_5	=	0x00b5
+                           0000B6   271 _P3_6	=	0x00b6
+                           0000B7   272 _P3_7	=	0x00b7
+                           0000B0   273 _RXD	=	0x00b0
+                           0000B1   274 _TXD	=	0x00b1
+                           0000B2   275 _INT0	=	0x00b2
+                           0000B3   276 _INT1	=	0x00b3
+                           0000B4   277 _T0	=	0x00b4
+                           0000B5   278 _T1	=	0x00b5
+                           0000B6   279 _WR	=	0x00b6
+                           0000B7   280 _RD	=	0x00b7
+                           0000B8   281 _PX0	=	0x00b8
+                           0000B9   282 _PT0	=	0x00b9
+                           0000BA   283 _PX1	=	0x00ba
+                           0000BB   284 _PT1	=	0x00bb
+                           0000BC   285 _PS	=	0x00bc
+                           0000D0   286 _P	=	0x00d0
+                           0000D1   287 _F1	=	0x00d1
+                           0000D2   288 _OV	=	0x00d2
+                           0000D3   289 _RS0	=	0x00d3
+                           0000D4   290 _RS1	=	0x00d4
+                           0000D5   291 _F0	=	0x00d5
+                           0000D6   292 _AC	=	0x00d6
+                           0000D7   293 _CY	=	0x00d7
+                           0000AD   294 _ET2	=	0x00ad
+                           0000BD   295 _PT2	=	0x00bd
+                           000090   296 _T2	=	0x0090
+                           000091   297 _T2EX	=	0x0091
+                           0000E8   298 _P4_0	=	0x00e8
+                           0000E9   299 _P4_1	=	0x00e9
+                           0000EA   300 _P4_2	=	0x00ea
+                           0000EB   301 _P4_3	=	0x00eb
+                           0000EA   302 _INT3	=	0x00ea
+                           0000EB   303 _INT2	=	0x00eb
+                           0000C8   304 _CPRL2	=	0x00c8
+                           0000C9   305 _T2_CT	=	0x00c9
+                           0000CA   306 _TR2	=	0x00ca
+                           0000CB   307 _EXEN2	=	0x00cb
+                           0000CC   308 _TCLK	=	0x00cc
+                           0000CD   309 _RCLK	=	0x00cd
+                           0000CE   310 _EXF2	=	0x00ce
+                           0000CF   311 _TF2	=	0x00cf
+                           0000C0   312 _IT2	=	0x00c0
+                           0000C1   313 _IE2	=	0x00c1
+                           0000C2   314 _EX2	=	0x00c2
+                           0000C3   315 _PX2	=	0x00c3
+                           0000C4   316 _IT3	=	0x00c4
+                           0000C5   317 _IE3	=	0x00c5
+                           0000C6   318 _EX3	=	0x00c6
+                           0000C7   319 _PX3	=	0x00c7
+                                    320 ;--------------------------------------------------------
+                                    321 ; overlayable register banks
+                                    322 ;--------------------------------------------------------
+                                    323 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        324 	.ds 8
+                                    325 ;--------------------------------------------------------
+                                    326 ; internal ram data
+                                    327 ;--------------------------------------------------------
+                                    328 	.area DSEG    (DATA)
+                                    329 ;--------------------------------------------------------
+                                    330 ; overlayable items in internal ram
+                                    331 ;--------------------------------------------------------
+                                    332 	.area	OSEG    (OVR,DATA)
+                                    333 	.area	OSEG    (OVR,DATA)
+                                    334 	.area	OSEG    (OVR,DATA)
+                                    335 	.area	OSEG    (OVR,DATA)
+                                    336 	.area	OSEG    (OVR,DATA)
+                                    337 	.area	OSEG    (OVR,DATA)
+      000000                        338 _TIM2_BAUD_cmd_PARM_2:
+      000000                        339 	.ds 1
+                                    340 	.area	OSEG    (OVR,DATA)
+                                    341 	.area	OSEG    (OVR,DATA)
+                                    342 	.area	OSEG    (OVR,DATA)
+                                    343 ;--------------------------------------------------------
+                                    344 ; indirectly addressable internal ram data
+                                    345 ;--------------------------------------------------------
+                                    346 	.area ISEG    (DATA)
+                                    347 ;--------------------------------------------------------
+                                    348 ; absolute internal ram data
+                                    349 ;--------------------------------------------------------
+                                    350 	.area IABS    (ABS,DATA)
+                                    351 	.area IABS    (ABS,DATA)
+                                    352 ;--------------------------------------------------------
+                                    353 ; bit data
+                                    354 ;--------------------------------------------------------
+                                    355 	.area BSEG    (BIT)
+      000000                        356 _TIM2_INT_setPriority_sloc0_1_0:
+      000000                        357 	.ds 1
+                                    358 ;--------------------------------------------------------
+                                    359 ; paged external ram data
+                                    360 ;--------------------------------------------------------
+                                    361 	.area PSEG    (PAG,XDATA)
+                                    362 ;--------------------------------------------------------
+                                    363 ; uninitialized external ram data
+                                    364 ;--------------------------------------------------------
+                                    365 	.area XSEG    (XDATA)
+                                    366 ;--------------------------------------------------------
+                                    367 ; absolute external ram data
+                                    368 ;--------------------------------------------------------
+                                    369 	.area XABS    (ABS,XDATA)
+                                    370 ;--------------------------------------------------------
+                                    371 ; initialized external ram data
+                                    372 ;--------------------------------------------------------
+                                    373 	.area XISEG   (XDATA)
+                                    374 	.area HOME    (CODE)
+                                    375 	.area GSINIT0 (CODE)
+                                    376 	.area GSINIT1 (CODE)
+                                    377 	.area GSINIT2 (CODE)
+                                    378 	.area GSINIT3 (CODE)
+                                    379 	.area GSINIT4 (CODE)
+                                    380 	.area GSINIT5 (CODE)
+                                    381 	.area GSINIT  (CODE)
+                                    382 	.area GSFINAL (CODE)
+                                    383 	.area CSEG    (CODE)
+                                    384 ;--------------------------------------------------------
+                                    385 ; global & static initialisations
+                                    386 ;--------------------------------------------------------
+                                    387 	.area HOME    (CODE)
+                                    388 	.area GSINIT  (CODE)
+                                    389 	.area GSFINAL (CODE)
+                                    390 	.area GSINIT  (CODE)
+                                    391 ;--------------------------------------------------------
+                                    392 ; Home
+                                    393 ;--------------------------------------------------------
+                                    394 	.area HOME    (CODE)
+                                    395 	.area HOME    (CODE)
+                                    396 ;--------------------------------------------------------
+                                    397 ; code
+                                    398 ;--------------------------------------------------------
+                                    399 	.area CSEG    (CODE)
+                                    400 ;------------------------------------------------------------
+                                    401 ;Allocation info for local variables in function 'TIM2_calculateValue'
+                                    402 ;------------------------------------------------------------
+                                    403 ;time          Allocated to registers r6 r7 
+                                    404 ;t             Allocated to registers r4 r5 
+                                    405 ;------------------------------------------------------------
+                                    406 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:26: uint16_t TIM2_calculateValue(uint16_t time)
+                                    407 ;	-----------------------------------------
+                                    408 ;	 function TIM2_calculateValue
+                                    409 ;	-----------------------------------------
+      000000                        410 _TIM2_calculateValue:
+                           000007   411 	ar7 = 0x07
+                           000006   412 	ar6 = 0x06
+                           000005   413 	ar5 = 0x05
+                           000004   414 	ar4 = 0x04
+                           000003   415 	ar3 = 0x03
+                           000002   416 	ar2 = 0x02
+                           000001   417 	ar1 = 0x01
+                           000000   418 	ar0 = 0x00
+      000000 AE 82            [24]  419 	mov	r6, dpl
+      000002 AF 83            [24]  420 	mov	r7, dph
+                                    421 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:28: uint16_t t = time*(MCU_FRE_CLK/1000000)/MCU_PRESCALER;
+      000004 8E*00            [24]  422 	mov	__mullong_PARM_2,r6
+      000006 8F*01            [24]  423 	mov	(__mullong_PARM_2 + 1),r7
+      000008 75*02 00         [24]  424 	mov	(__mullong_PARM_2 + 2),#0x00
+      00000B 75*03 00         [24]  425 	mov	(__mullong_PARM_2 + 3),#0x00
+      00000E 90 00 0B         [24]  426 	mov	dptr,#0x000b
+      000011 E4               [12]  427 	clr	a
+      000012 F5 F0            [12]  428 	mov	b,a
+      000014 12r00r00         [24]  429 	lcall	__mullong
+      000017 AC 82            [24]  430 	mov	r4, dpl
+      000019 AD 83            [24]  431 	mov	r5, dph
+      00001B AE F0            [24]  432 	mov	r6, b
+      00001D FF               [12]  433 	mov	r7, a
+      00001E 75*00 0C         [24]  434 	mov	__divulong_PARM_2,#0x0c
+      000021 E4               [12]  435 	clr	a
+      000022 F5*01            [12]  436 	mov	(__divulong_PARM_2 + 1),a
+      000024 F5*02            [12]  437 	mov	(__divulong_PARM_2 + 2),a
+      000026 F5*03            [12]  438 	mov	(__divulong_PARM_2 + 3),a
+      000028 8C 82            [24]  439 	mov	dpl, r4
+      00002A 8D 83            [24]  440 	mov	dph, r5
+      00002C 8E F0            [24]  441 	mov	b, r6
+      00002E EF               [12]  442 	mov	a, r7
+      00002F 12r00r00         [24]  443 	lcall	__divulong
+      000032 AC 82            [24]  444 	mov	r4, dpl
+      000034 AD 83            [24]  445 	mov	r5, dph
+                                    446 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:36: return (TIM2_MAXTICK + 1 - t);
+      000036 C3               [12]  447 	clr	c
+      000037 E4               [12]  448 	clr	a
+      000038 9C               [12]  449 	subb	a,r4
+      000039 F5 82            [12]  450 	mov	dpl,a
+      00003B E4               [12]  451 	clr	a
+      00003C 9D               [12]  452 	subb	a,r5
+      00003D F5 83            [12]  453 	mov	dph,a
+                                    454 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:38: }
+      00003F 22               [24]  455 	ret
+                                    456 ;------------------------------------------------------------
+                                    457 ;Allocation info for local variables in function 'TIM2_clearFlag'
+                                    458 ;------------------------------------------------------------
+                                    459 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:50: void TIM2_clearFlag(void)
+                                    460 ;	-----------------------------------------
+                                    461 ;	 function TIM2_clearFlag
+                                    462 ;	-----------------------------------------
+      000040                        463 _TIM2_clearFlag:
+                                    464 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:52: TF2 = RESET;
+                                    465 ;	assignBit
+      000040 C2 CF            [12]  466 	clr	_TF2
+                                    467 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:53: }
+      000042 22               [24]  468 	ret
+                                    469 ;------------------------------------------------------------
+                                    470 ;Allocation info for local variables in function 'TIM2_cmd'
+                                    471 ;------------------------------------------------------------
+                                    472 ;a             Allocated to registers r7 
+                                    473 ;------------------------------------------------------------
+                                    474 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:65: void TIM2_cmd(Action a)
+                                    475 ;	-----------------------------------------
+                                    476 ;	 function TIM2_cmd
+                                    477 ;	-----------------------------------------
+      000043                        478 _TIM2_cmd:
+                                    479 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:67: TR2 = a;
+      000043 E5 82            [12]  480 	mov	a,dpl
+      000045 24 FF            [12]  481 	add	a,#0xff
+      000047 92 CA            [24]  482 	mov	_TR2,c
+                                    483 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:68: }
+      000049 22               [24]  484 	ret
+                                    485 ;------------------------------------------------------------
+                                    486 ;Allocation info for local variables in function 'TIM2_config'
+                                    487 ;------------------------------------------------------------
+                                    488 ;t2c           Allocated to registers r5 r6 r7 
+                                    489 ;------------------------------------------------------------
+                                    490 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:80: void TIM2_config(TIM2_configTypeDef *t2c)
+                                    491 ;	-----------------------------------------
+                                    492 ;	 function TIM2_config
+                                    493 ;	-----------------------------------------
+      00004A                        494 _TIM2_config:
+      00004A AD 82            [24]  495 	mov	r5, dpl
+      00004C AE 83            [24]  496 	mov	r6, dph
+      00004E AF F0            [24]  497 	mov	r7, b
+                                    498 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:82: TIM2_setFunction(t2c->function);
+      000050 8D 02            [24]  499 	mov	ar2,r5
+      000052 8E 03            [24]  500 	mov	ar3,r6
+      000054 8F 04            [24]  501 	mov	ar4,r7
+      000056 8A 82            [24]  502 	mov	dpl,r2
+      000058 8B 83            [24]  503 	mov	dph,r3
+      00005A 8C F0            [24]  504 	mov	b,r4
+      00005C 12r00r00         [24]  505 	lcall	__gptrget
+      00005F F5 82            [12]  506 	mov	dpl,a
+      000061 C0 07            [24]  507 	push	ar7
+      000063 C0 06            [24]  508 	push	ar6
+      000065 C0 05            [24]  509 	push	ar5
+      000067 12r01r55         [24]  510 	lcall	_TIM2_setFunction
+      00006A D0 05            [24]  511 	pop	ar5
+      00006C D0 06            [24]  512 	pop	ar6
+      00006E D0 07            [24]  513 	pop	ar7
+                                    514 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:83: TIM2_setMode(t2c->mode);
+      000070 74 03            [12]  515 	mov	a,#0x03
+      000072 2D               [12]  516 	add	a, r5
+      000073 FA               [12]  517 	mov	r2,a
+      000074 E4               [12]  518 	clr	a
+      000075 3E               [12]  519 	addc	a, r6
+      000076 FB               [12]  520 	mov	r3,a
+      000077 8F 04            [24]  521 	mov	ar4,r7
+      000079 8A 82            [24]  522 	mov	dpl,r2
+      00007B 8B 83            [24]  523 	mov	dph,r3
+      00007D 8C F0            [24]  524 	mov	b,r4
+      00007F 12r00r00         [24]  525 	lcall	__gptrget
+      000082 F5 82            [12]  526 	mov	dpl,a
+      000084 C0 07            [24]  527 	push	ar7
+      000086 C0 06            [24]  528 	push	ar6
+      000088 C0 05            [24]  529 	push	ar5
+      00008A 12r01r5F         [24]  530 	lcall	_TIM2_setMode
+      00008D D0 05            [24]  531 	pop	ar5
+      00008F D0 06            [24]  532 	pop	ar6
+      000091 D0 07            [24]  533 	pop	ar7
+                                    534 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:84: TIM2_setReloadValue(t2c->reloadValue);
+      000093 74 06            [12]  535 	mov	a,#0x06
+      000095 2D               [12]  536 	add	a, r5
+      000096 FA               [12]  537 	mov	r2,a
+      000097 E4               [12]  538 	clr	a
+      000098 3E               [12]  539 	addc	a, r6
+      000099 FB               [12]  540 	mov	r3,a
+      00009A 8F 04            [24]  541 	mov	ar4,r7
+      00009C 8A 82            [24]  542 	mov	dpl,r2
+      00009E 8B 83            [24]  543 	mov	dph,r3
+      0000A0 8C F0            [24]  544 	mov	b,r4
+      0000A2 12r00r00         [24]  545 	lcall	__gptrget
+      0000A5 FA               [12]  546 	mov	r2,a
+      0000A6 A3               [24]  547 	inc	dptr
+      0000A7 12r00r00         [24]  548 	lcall	__gptrget
+      0000AA FB               [12]  549 	mov	r3,a
+      0000AB 8A 82            [24]  550 	mov	dpl, r2
+      0000AD 8B 83            [24]  551 	mov	dph, r3
+      0000AF C0 07            [24]  552 	push	ar7
+      0000B1 C0 06            [24]  553 	push	ar6
+      0000B3 C0 05            [24]  554 	push	ar5
+      0000B5 12r01r69         [24]  555 	lcall	_TIM2_setReloadValue
+      0000B8 D0 05            [24]  556 	pop	ar5
+      0000BA D0 06            [24]  557 	pop	ar6
+      0000BC D0 07            [24]  558 	pop	ar7
+                                    559 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:85: TIM2_setValue(t2c->value);
+      0000BE 74 04            [12]  560 	mov	a,#0x04
+      0000C0 2D               [12]  561 	add	a, r5
+      0000C1 FA               [12]  562 	mov	r2,a
+      0000C2 E4               [12]  563 	clr	a
+      0000C3 3E               [12]  564 	addc	a, r6
+      0000C4 FB               [12]  565 	mov	r3,a
+      0000C5 8F 04            [24]  566 	mov	ar4,r7
+      0000C7 8A 82            [24]  567 	mov	dpl,r2
+      0000C9 8B 83            [24]  568 	mov	dph,r3
+      0000CB 8C F0            [24]  569 	mov	b,r4
+      0000CD 12r00r00         [24]  570 	lcall	__gptrget
+      0000D0 FA               [12]  571 	mov	r2,a
+      0000D1 A3               [24]  572 	inc	dptr
+      0000D2 12r00r00         [24]  573 	lcall	__gptrget
+      0000D5 FB               [12]  574 	mov	r3,a
+      0000D6 8A 82            [24]  575 	mov	dpl, r2
+      0000D8 8B 83            [24]  576 	mov	dph, r3
+      0000DA C0 07            [24]  577 	push	ar7
+      0000DC C0 06            [24]  578 	push	ar6
+      0000DE C0 05            [24]  579 	push	ar5
+      0000E0 12r01r72         [24]  580 	lcall	_TIM2_setValue
+      0000E3 D0 05            [24]  581 	pop	ar5
+      0000E5 D0 06            [24]  582 	pop	ar6
+      0000E7 D0 07            [24]  583 	pop	ar7
+                                    584 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:86: TIM2_INT_cmd(t2c->interruptState);
+      0000E9 74 01            [12]  585 	mov	a,#0x01
+      0000EB 2D               [12]  586 	add	a, r5
+      0000EC FA               [12]  587 	mov	r2,a
+      0000ED E4               [12]  588 	clr	a
+      0000EE 3E               [12]  589 	addc	a, r6
+      0000EF FB               [12]  590 	mov	r3,a
+      0000F0 8F 04            [24]  591 	mov	ar4,r7
+      0000F2 8A 82            [24]  592 	mov	dpl,r2
+      0000F4 8B 83            [24]  593 	mov	dph,r3
+      0000F6 8C F0            [24]  594 	mov	b,r4
+      0000F8 12r00r00         [24]  595 	lcall	__gptrget
+      0000FB F5 82            [12]  596 	mov	dpl,a
+      0000FD C0 07            [24]  597 	push	ar7
+      0000FF C0 06            [24]  598 	push	ar6
+      000101 C0 05            [24]  599 	push	ar5
+      000103 12r01r92         [24]  600 	lcall	_TIM2_INT_cmd
+      000106 D0 05            [24]  601 	pop	ar5
+      000108 D0 06            [24]  602 	pop	ar6
+      00010A D0 07            [24]  603 	pop	ar7
+                                    604 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:87: TIM2_INT_setPriority(t2c->interruptPriority);
+      00010C 74 02            [12]  605 	mov	a,#0x02
+      00010E 2D               [12]  606 	add	a, r5
+      00010F FD               [12]  607 	mov	r5,a
+      000110 E4               [12]  608 	clr	a
+      000111 3E               [12]  609 	addc	a, r6
+      000112 FE               [12]  610 	mov	r6,a
+      000113 8D 82            [24]  611 	mov	dpl,r5
+      000115 8E 83            [24]  612 	mov	dph,r6
+      000117 8F F0            [24]  613 	mov	b,r7
+      000119 12r00r00         [24]  614 	lcall	__gptrget
+      00011C F5 82            [12]  615 	mov	dpl,a
+                                    616 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:88: }
+      00011E 02r01r99         [24]  617 	ljmp	_TIM2_INT_setPriority
+                                    618 ;------------------------------------------------------------
+                                    619 ;Allocation info for local variables in function 'TIM2_getCaptureValue'
+                                    620 ;------------------------------------------------------------
+                                    621 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:100: uint16_t TIM2_getCaptureValue(void)
+                                    622 ;	-----------------------------------------
+                                    623 ;	 function TIM2_getCaptureValue
+                                    624 ;	-----------------------------------------
+      000121                        625 _TIM2_getCaptureValue:
+                                    626 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:102: return (uint16_t)((RCAP2H << 0x8) | RCAP2L);
+      000121 AF CB            [24]  627 	mov	r7,_RCAP2H
+      000123 7E 00            [12]  628 	mov	r6,#0x00
+      000125 AC CA            [24]  629 	mov	r4,_RCAP2L
+      000127 7D 00            [12]  630 	mov	r5,#0x00
+      000129 EC               [12]  631 	mov	a,r4
+      00012A 42 06            [12]  632 	orl	ar6,a
+      00012C ED               [12]  633 	mov	a,r5
+      00012D 42 07            [12]  634 	orl	ar7,a
+      00012F 8E 82            [24]  635 	mov	dpl,r6
+      000131 8F 83            [24]  636 	mov	dph,r7
+                                    637 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:103: }
+      000133 22               [24]  638 	ret
+                                    639 ;------------------------------------------------------------
+                                    640 ;Allocation info for local variables in function 'TIM2_getValue'
+                                    641 ;------------------------------------------------------------
+                                    642 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:115: uint16_t TIM2_getValue(void)
+                                    643 ;	-----------------------------------------
+                                    644 ;	 function TIM2_getValue
+                                    645 ;	-----------------------------------------
+      000134                        646 _TIM2_getValue:
+                                    647 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:117: return (uint16_t)((TH2 << 0x8) | TL2);
+      000134 AF CD            [24]  648 	mov	r7,_TH2
+      000136 7E 00            [12]  649 	mov	r6,#0x00
+      000138 AC CC            [24]  650 	mov	r4,_TL2
+      00013A 7D 00            [12]  651 	mov	r5,#0x00
+      00013C EC               [12]  652 	mov	a,r4
+      00013D 42 06            [12]  653 	orl	ar6,a
+      00013F ED               [12]  654 	mov	a,r5
+      000140 42 07            [12]  655 	orl	ar7,a
+      000142 8E 82            [24]  656 	mov	dpl,r6
+      000144 8F 83            [24]  657 	mov	dph,r7
+                                    658 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:118: }
+      000146 22               [24]  659 	ret
+                                    660 ;------------------------------------------------------------
+                                    661 ;Allocation info for local variables in function 'TIM2_isExternalEvent'
+                                    662 ;------------------------------------------------------------
+                                    663 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:130: bool TIM2_isExternalEvent(void)
+                                    664 ;	-----------------------------------------
+                                    665 ;	 function TIM2_isExternalEvent
+                                    666 ;	-----------------------------------------
+      000147                        667 _TIM2_isExternalEvent:
+                                    668 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:132: return (bool)T2EX;
+      000147 A2 91            [12]  669 	mov	c,_T2EX
+      000149 E4               [12]  670 	clr	a
+      00014A 33               [12]  671 	rlc	a
+      00014B F5 82            [12]  672 	mov	dpl,a
+                                    673 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:133: }
+      00014D 22               [24]  674 	ret
+                                    675 ;------------------------------------------------------------
+                                    676 ;Allocation info for local variables in function 'TIM2_isOverflow'
+                                    677 ;------------------------------------------------------------
+                                    678 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:146: bool TIM2_isOverflow(void)
+                                    679 ;	-----------------------------------------
+                                    680 ;	 function TIM2_isOverflow
+                                    681 ;	-----------------------------------------
+      00014E                        682 _TIM2_isOverflow:
+                                    683 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:148: return (bool)(TF2);
+      00014E A2 CF            [12]  684 	mov	c,_TF2
+      000150 E4               [12]  685 	clr	a
+      000151 33               [12]  686 	rlc	a
+      000152 F5 82            [12]  687 	mov	dpl,a
+                                    688 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:149: }
+      000154 22               [24]  689 	ret
+                                    690 ;------------------------------------------------------------
+                                    691 ;Allocation info for local variables in function 'TIM2_setFunction'
+                                    692 ;------------------------------------------------------------
+                                    693 ;f             Allocated to registers r7 
+                                    694 ;------------------------------------------------------------
+                                    695 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:161: void TIM2_setFunction(TIM2_function f)
+                                    696 ;	-----------------------------------------
+                                    697 ;	 function TIM2_setFunction
+                                    698 ;	-----------------------------------------
+      000155                        699 _TIM2_setFunction:
+      000155 AF 82            [24]  700 	mov	r7, dpl
+                                    701 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:163: T2CON = (T2CON & 0XCF) | f;
+      000157 E5 C8            [12]  702 	mov	a,_T2CON
+      000159 54 CF            [12]  703 	anl	a,#0xcf
+      00015B 4F               [12]  704 	orl	a,r7
+      00015C F5 C8            [12]  705 	mov	_T2CON,a
+                                    706 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:164: }
+      00015E 22               [24]  707 	ret
+                                    708 ;------------------------------------------------------------
+                                    709 ;Allocation info for local variables in function 'TIM2_setMode'
+                                    710 ;------------------------------------------------------------
+                                    711 ;mode          Allocated to registers r7 
+                                    712 ;------------------------------------------------------------
+                                    713 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:176: void TIM2_setMode(TIM2_mode mode)
+                                    714 ;	-----------------------------------------
+                                    715 ;	 function TIM2_setMode
+                                    716 ;	-----------------------------------------
+      00015F                        717 _TIM2_setMode:
+      00015F AF 82            [24]  718 	mov	r7, dpl
+                                    719 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:178: T2CON = (T2CON & 0xCE) | mode;
+      000161 E5 C8            [12]  720 	mov	a,_T2CON
+      000163 54 CE            [12]  721 	anl	a,#0xce
+      000165 4F               [12]  722 	orl	a,r7
+      000166 F5 C8            [12]  723 	mov	_T2CON,a
+                                    724 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:179: }
+      000168 22               [24]  725 	ret
+                                    726 ;------------------------------------------------------------
+                                    727 ;Allocation info for local variables in function 'TIM2_setReloadValue'
+                                    728 ;------------------------------------------------------------
+                                    729 ;val           Allocated to registers r6 r7 
+                                    730 ;------------------------------------------------------------
+                                    731 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:191: void TIM2_setReloadValue(uint16_t val)
+                                    732 ;	-----------------------------------------
+                                    733 ;	 function TIM2_setReloadValue
+                                    734 ;	-----------------------------------------
+      000169                        735 _TIM2_setReloadValue:
+      000169 AE 82            [24]  736 	mov	r6, dpl
+      00016B AF 83            [24]  737 	mov	r7, dph
+                                    738 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:193: RCAP2H = (byte)(val >> 0x8);
+      00016D 8F CB            [24]  739 	mov	_RCAP2H,r7
+                                    740 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:194: RCAP2L = val;
+      00016F 8E CA            [24]  741 	mov	_RCAP2L,r6
+                                    742 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:195: }
+      000171 22               [24]  743 	ret
+                                    744 ;------------------------------------------------------------
+                                    745 ;Allocation info for local variables in function 'TIM2_setValue'
+                                    746 ;------------------------------------------------------------
+                                    747 ;val           Allocated to registers r6 r7 
+                                    748 ;------------------------------------------------------------
+                                    749 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:207: void TIM2_setValue(uint16_t val)
+                                    750 ;	-----------------------------------------
+                                    751 ;	 function TIM2_setValue
+                                    752 ;	-----------------------------------------
+      000172                        753 _TIM2_setValue:
+      000172 AE 82            [24]  754 	mov	r6, dpl
+      000174 AF 83            [24]  755 	mov	r7, dph
+                                    756 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:209: TH2 = (val >> 0x8);
+      000176 8F CD            [24]  757 	mov	_TH2,r7
+                                    758 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:210: TL2 = val;
+      000178 8E CC            [24]  759 	mov	_TL2,r6
+                                    760 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:211: }
+      00017A 22               [24]  761 	ret
+                                    762 ;------------------------------------------------------------
+                                    763 ;Allocation info for local variables in function 'TIM2_BAUD_cmd'
+                                    764 ;------------------------------------------------------------
+                                    765 ;a             Allocated with name '_TIM2_BAUD_cmd_PARM_2'
+                                    766 ;t             Allocated to registers r7 
+                                    767 ;------------------------------------------------------------
+                                    768 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:225: void TIM2_BAUD_cmd(TIM2_baudClock t, Action a)
+                                    769 ;	-----------------------------------------
+                                    770 ;	 function TIM2_BAUD_cmd
+                                    771 ;	-----------------------------------------
+      00017B                        772 _TIM2_BAUD_cmd:
+                                    773 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:227: if (t & TIM2_baudClock_receive)
+      00017B E5 82            [12]  774 	mov	a,dpl
+      00017D FF               [12]  775 	mov	r7,a
+      00017E 30 E0 06         [24]  776 	jnb	acc.0,00102$
+                                    777 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:229: RCLK = (FunctionalState)a;
+      000181 E5*00            [12]  778 	mov	a,_TIM2_BAUD_cmd_PARM_2
+      000183 24 FF            [12]  779 	add	a,#0xff
+      000185 92 CD            [24]  780 	mov	_RCLK,c
+      000187                        781 00102$:
+                                    782 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:231: if (t & TIM2_baudClock_transmit)
+      000187 EF               [12]  783 	mov	a,r7
+      000188 30 E1 06         [24]  784 	jnb	acc.1,00105$
+                                    785 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:233: TCLK = (FunctionalState)a;
+      00018B E5*00            [12]  786 	mov	a,_TIM2_BAUD_cmd_PARM_2
+      00018D 24 FF            [12]  787 	add	a,#0xff
+      00018F 92 CC            [24]  788 	mov	_TCLK,c
+      000191                        789 00105$:
+                                    790 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:235: }
+      000191 22               [24]  791 	ret
+                                    792 ;------------------------------------------------------------
+                                    793 ;Allocation info for local variables in function 'TIM2_INT_cmd'
+                                    794 ;------------------------------------------------------------
+                                    795 ;a             Allocated to registers r7 
+                                    796 ;------------------------------------------------------------
+                                    797 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:247: void TIM2_INT_cmd(Action a)
+                                    798 ;	-----------------------------------------
+                                    799 ;	 function TIM2_INT_cmd
+                                    800 ;	-----------------------------------------
+      000192                        801 _TIM2_INT_cmd:
+                                    802 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:249: ET2 = a;
+      000192 E5 82            [12]  803 	mov	a,dpl
+      000194 24 FF            [12]  804 	add	a,#0xff
+      000196 92 AD            [24]  805 	mov	_ET2,c
+                                    806 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:250: }
+      000198 22               [24]  807 	ret
+                                    808 ;------------------------------------------------------------
+                                    809 ;Allocation info for local variables in function 'TIM2_INT_setPriority'
+                                    810 ;------------------------------------------------------------
+                                    811 ;p             Allocated to registers r7 
+                                    812 ;------------------------------------------------------------
+                                    813 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:262: void TIM2_INT_setPriority(UTIL_interruptPriority p)
+                                    814 ;	-----------------------------------------
+                                    815 ;	 function TIM2_INT_setPriority
+                                    816 ;	-----------------------------------------
+      000199                        817 _TIM2_INT_setPriority:
+                                    818 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:264: PT2 = TESTB(p,1);
+      000199 E5 82            [12]  819 	mov	a,dpl
+      00019B 03               [12]  820 	rr	a
+      00019C 54 01            [12]  821 	anl	a,#0x01
+      00019E B4 01 00         [24]  822 	cjne	a,#0x01,00103$
+      0001A1                        823 00103$:
+      0001A1 B3               [12]  824 	cpl	c
+      0001A2 92*00            [24]  825 	mov	_TIM2_INT_setPriority_sloc0_1_0,c
+      0001A4 E4               [12]  826 	clr	a
+      0001A5 33               [12]  827 	rlc	a
+      0001A6 24 FF            [12]  828 	add	a,#0xff
+      0001A8 92 BD            [24]  829 	mov	_PT2,c
+                                    830 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:265: CONFB(IPH, BIT_NUM_PT2H, TESTB(p, 1));
+      0001AA 74 DF            [12]  831 	mov	a,#0xdf
+      0001AC 55 B7            [12]  832 	anl	a,_IPH
+      0001AE FF               [12]  833 	mov	r7,a
+      0001AF A2*00            [12]  834 	mov	c,_TIM2_INT_setPriority_sloc0_1_0
+      0001B1 E4               [12]  835 	clr	a
+      0001B2 33               [12]  836 	rlc	a
+      0001B3 C4               [12]  837 	swap	a
+      0001B4 23               [12]  838 	rl	a
+      0001B5 54 E0            [12]  839 	anl	a,#0xe0
+      0001B7 4F               [12]  840 	orl	a,r7
+      0001B8 F5 B7            [12]  841 	mov	_IPH,a
+                                    842 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:266: }
+      0001BA 22               [24]  843 	ret
+                                    844 ;------------------------------------------------------------
+                                    845 ;Allocation info for local variables in function 'TIM2_T2EX_cmd'
+                                    846 ;------------------------------------------------------------
+                                    847 ;a             Allocated to registers r7 
+                                    848 ;------------------------------------------------------------
+                                    849 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:281: void TIM2_T2EX_cmd(Action a)
+                                    850 ;	-----------------------------------------
+                                    851 ;	 function TIM2_T2EX_cmd
+                                    852 ;	-----------------------------------------
+      0001BB                        853 _TIM2_T2EX_cmd:
+                                    854 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:283: EXEN2 = a;
+      0001BB E5 82            [12]  855 	mov	a,dpl
+      0001BD 24 FF            [12]  856 	add	a,#0xff
+      0001BF 92 CB            [24]  857 	mov	_EXEN2,c
+                                    858 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim2.c:284: }
+      0001C1 22               [24]  859 	ret
+                                    860 	.area CSEG    (CODE)
+                                    861 	.area CONST   (CODE)
+                                    862 	.area XINIT   (CODE)
+                                    863 	.area CABS    (ABS,CODE)

@@ -1,0 +1,1012 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler
+                                      3 ; Version 4.5.0 #15242 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module tim
+                                      6 	
+                                      7 	.optsdcc -mmcs51 --model-small
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _TIM_INT_setPriority_PARM_2
+                                     12 	.globl _TIM_INT_cmd_PARM_2
+                                     13 	.globl _TIM_setValue_PARM_2
+                                     14 	.globl _TIM_setMode_PARM_2
+                                     15 	.globl _TIM_setFunction_PARM_2
+                                     16 	.globl _TIM_cmd_PARM_2
+                                     17 	.globl _PX3
+                                     18 	.globl _EX3
+                                     19 	.globl _IE3
+                                     20 	.globl _IT3
+                                     21 	.globl _PX2
+                                     22 	.globl _EX2
+                                     23 	.globl _IE2
+                                     24 	.globl _IT2
+                                     25 	.globl _TF2
+                                     26 	.globl _EXF2
+                                     27 	.globl _RCLK
+                                     28 	.globl _TCLK
+                                     29 	.globl _EXEN2
+                                     30 	.globl _TR2
+                                     31 	.globl _T2_CT
+                                     32 	.globl _CPRL2
+                                     33 	.globl _INT2
+                                     34 	.globl _INT3
+                                     35 	.globl _P4_3
+                                     36 	.globl _P4_2
+                                     37 	.globl _P4_1
+                                     38 	.globl _P4_0
+                                     39 	.globl _T2EX
+                                     40 	.globl _T2
+                                     41 	.globl _PT2
+                                     42 	.globl _ET2
+                                     43 	.globl _CY
+                                     44 	.globl _AC
+                                     45 	.globl _F0
+                                     46 	.globl _RS1
+                                     47 	.globl _RS0
+                                     48 	.globl _OV
+                                     49 	.globl _F1
+                                     50 	.globl _P
+                                     51 	.globl _PS
+                                     52 	.globl _PT1
+                                     53 	.globl _PX1
+                                     54 	.globl _PT0
+                                     55 	.globl _PX0
+                                     56 	.globl _RD
+                                     57 	.globl _WR
+                                     58 	.globl _T1
+                                     59 	.globl _T0
+                                     60 	.globl _INT1
+                                     61 	.globl _INT0
+                                     62 	.globl _TXD
+                                     63 	.globl _RXD
+                                     64 	.globl _P3_7
+                                     65 	.globl _P3_6
+                                     66 	.globl _P3_5
+                                     67 	.globl _P3_4
+                                     68 	.globl _P3_3
+                                     69 	.globl _P3_2
+                                     70 	.globl _P3_1
+                                     71 	.globl _P3_0
+                                     72 	.globl _EA
+                                     73 	.globl _ES
+                                     74 	.globl _ET1
+                                     75 	.globl _EX1
+                                     76 	.globl _ET0
+                                     77 	.globl _EX0
+                                     78 	.globl _P2_7
+                                     79 	.globl _P2_6
+                                     80 	.globl _P2_5
+                                     81 	.globl _P2_4
+                                     82 	.globl _P2_3
+                                     83 	.globl _P2_2
+                                     84 	.globl _P2_1
+                                     85 	.globl _P2_0
+                                     86 	.globl _SM0
+                                     87 	.globl _SM1
+                                     88 	.globl _SM2
+                                     89 	.globl _REN
+                                     90 	.globl _TB8
+                                     91 	.globl _RB8
+                                     92 	.globl _TI
+                                     93 	.globl _RI
+                                     94 	.globl _P1_7
+                                     95 	.globl _P1_6
+                                     96 	.globl _P1_5
+                                     97 	.globl _P1_4
+                                     98 	.globl _P1_3
+                                     99 	.globl _P1_2
+                                    100 	.globl _P1_1
+                                    101 	.globl _P1_0
+                                    102 	.globl _TF1
+                                    103 	.globl _TR1
+                                    104 	.globl _TF0
+                                    105 	.globl _TR0
+                                    106 	.globl _IE1
+                                    107 	.globl _IT1
+                                    108 	.globl _IE0
+                                    109 	.globl _IT0
+                                    110 	.globl _P0_7
+                                    111 	.globl _P0_6
+                                    112 	.globl _P0_5
+                                    113 	.globl _P0_4
+                                    114 	.globl _P0_3
+                                    115 	.globl _P0_2
+                                    116 	.globl _P0_1
+                                    117 	.globl _P0_0
+                                    118 	.globl _P4
+                                    119 	.globl _ISP_CONTR
+                                    120 	.globl _ISP_TRIG
+                                    121 	.globl _ISP_CMD
+                                    122 	.globl _ISP_ADDRL
+                                    123 	.globl _ISP_ADDRH
+                                    124 	.globl _ISP_DATA
+                                    125 	.globl _WDT_CONTR
+                                    126 	.globl _TH2
+                                    127 	.globl _TL2
+                                    128 	.globl _RCAP2H
+                                    129 	.globl _RCAP2L
+                                    130 	.globl _T2MOD
+                                    131 	.globl _T2CON
+                                    132 	.globl _XICON
+                                    133 	.globl _IPH
+                                    134 	.globl _SADDR1
+                                    135 	.globl _AUXR1
+                                    136 	.globl _AUXR
+                                    137 	.globl _B
+                                    138 	.globl _ACC
+                                    139 	.globl _PSW
+                                    140 	.globl _IP
+                                    141 	.globl _P3
+                                    142 	.globl _IE
+                                    143 	.globl _P2
+                                    144 	.globl _SBUF
+                                    145 	.globl _SCON
+                                    146 	.globl _P1
+                                    147 	.globl _TH1
+                                    148 	.globl _TH0
+                                    149 	.globl _TL1
+                                    150 	.globl _TL0
+                                    151 	.globl _TMOD
+                                    152 	.globl _TCON
+                                    153 	.globl _PCON
+                                    154 	.globl _DPH
+                                    155 	.globl _DPL
+                                    156 	.globl _SP
+                                    157 	.globl _P0
+                                    158 	.globl _TIM_config_PARM_2
+                                    159 	.globl _TIM_calculateValue_PARM_2
+                                    160 	.globl _TIM_calculateValue
+                                    161 	.globl _TIM_cmd
+                                    162 	.globl _TIM_config
+                                    163 	.globl _TIM_getValue
+                                    164 	.globl _TIM_isOverflow
+                                    165 	.globl _TIM_setFunction
+                                    166 	.globl _TIM_setMode
+                                    167 	.globl _TIM_setValue
+                                    168 	.globl _TIM_INT_cmd
+                                    169 	.globl _TIM_INT_setPriority
+                                    170 ;--------------------------------------------------------
+                                    171 ; special function registers
+                                    172 ;--------------------------------------------------------
+                                    173 	.area RSEG    (ABS,DATA)
+      000000                        174 	.org 0x0000
+                           000080   175 _P0	=	0x0080
+                           000081   176 _SP	=	0x0081
+                           000082   177 _DPL	=	0x0082
+                           000083   178 _DPH	=	0x0083
+                           000087   179 _PCON	=	0x0087
+                           000088   180 _TCON	=	0x0088
+                           000089   181 _TMOD	=	0x0089
+                           00008A   182 _TL0	=	0x008a
+                           00008B   183 _TL1	=	0x008b
+                           00008C   184 _TH0	=	0x008c
+                           00008D   185 _TH1	=	0x008d
+                           000090   186 _P1	=	0x0090
+                           000098   187 _SCON	=	0x0098
+                           000099   188 _SBUF	=	0x0099
+                           0000A0   189 _P2	=	0x00a0
+                           0000A8   190 _IE	=	0x00a8
+                           0000B0   191 _P3	=	0x00b0
+                           0000B8   192 _IP	=	0x00b8
+                           0000D0   193 _PSW	=	0x00d0
+                           0000E0   194 _ACC	=	0x00e0
+                           0000F0   195 _B	=	0x00f0
+                           00008E   196 _AUXR	=	0x008e
+                           0000A2   197 _AUXR1	=	0x00a2
+                           0000A9   198 _SADDR1	=	0x00a9
+                           0000B7   199 _IPH	=	0x00b7
+                           0000C0   200 _XICON	=	0x00c0
+                           0000C8   201 _T2CON	=	0x00c8
+                           0000C9   202 _T2MOD	=	0x00c9
+                           0000CA   203 _RCAP2L	=	0x00ca
+                           0000CB   204 _RCAP2H	=	0x00cb
+                           0000CC   205 _TL2	=	0x00cc
+                           0000CD   206 _TH2	=	0x00cd
+                           0000E1   207 _WDT_CONTR	=	0x00e1
+                           0000E2   208 _ISP_DATA	=	0x00e2
+                           0000E3   209 _ISP_ADDRH	=	0x00e3
+                           0000E4   210 _ISP_ADDRL	=	0x00e4
+                           0000E5   211 _ISP_CMD	=	0x00e5
+                           0000E6   212 _ISP_TRIG	=	0x00e6
+                           0000E7   213 _ISP_CONTR	=	0x00e7
+                           0000E8   214 _P4	=	0x00e8
+                                    215 ;--------------------------------------------------------
+                                    216 ; special function bits
+                                    217 ;--------------------------------------------------------
+                                    218 	.area RSEG    (ABS,DATA)
+      000000                        219 	.org 0x0000
+                           000080   220 _P0_0	=	0x0080
+                           000081   221 _P0_1	=	0x0081
+                           000082   222 _P0_2	=	0x0082
+                           000083   223 _P0_3	=	0x0083
+                           000084   224 _P0_4	=	0x0084
+                           000085   225 _P0_5	=	0x0085
+                           000086   226 _P0_6	=	0x0086
+                           000087   227 _P0_7	=	0x0087
+                           000088   228 _IT0	=	0x0088
+                           000089   229 _IE0	=	0x0089
+                           00008A   230 _IT1	=	0x008a
+                           00008B   231 _IE1	=	0x008b
+                           00008C   232 _TR0	=	0x008c
+                           00008D   233 _TF0	=	0x008d
+                           00008E   234 _TR1	=	0x008e
+                           00008F   235 _TF1	=	0x008f
+                           000090   236 _P1_0	=	0x0090
+                           000091   237 _P1_1	=	0x0091
+                           000092   238 _P1_2	=	0x0092
+                           000093   239 _P1_3	=	0x0093
+                           000094   240 _P1_4	=	0x0094
+                           000095   241 _P1_5	=	0x0095
+                           000096   242 _P1_6	=	0x0096
+                           000097   243 _P1_7	=	0x0097
+                           000098   244 _RI	=	0x0098
+                           000099   245 _TI	=	0x0099
+                           00009A   246 _RB8	=	0x009a
+                           00009B   247 _TB8	=	0x009b
+                           00009C   248 _REN	=	0x009c
+                           00009D   249 _SM2	=	0x009d
+                           00009E   250 _SM1	=	0x009e
+                           00009F   251 _SM0	=	0x009f
+                           0000A0   252 _P2_0	=	0x00a0
+                           0000A1   253 _P2_1	=	0x00a1
+                           0000A2   254 _P2_2	=	0x00a2
+                           0000A3   255 _P2_3	=	0x00a3
+                           0000A4   256 _P2_4	=	0x00a4
+                           0000A5   257 _P2_5	=	0x00a5
+                           0000A6   258 _P2_6	=	0x00a6
+                           0000A7   259 _P2_7	=	0x00a7
+                           0000A8   260 _EX0	=	0x00a8
+                           0000A9   261 _ET0	=	0x00a9
+                           0000AA   262 _EX1	=	0x00aa
+                           0000AB   263 _ET1	=	0x00ab
+                           0000AC   264 _ES	=	0x00ac
+                           0000AF   265 _EA	=	0x00af
+                           0000B0   266 _P3_0	=	0x00b0
+                           0000B1   267 _P3_1	=	0x00b1
+                           0000B2   268 _P3_2	=	0x00b2
+                           0000B3   269 _P3_3	=	0x00b3
+                           0000B4   270 _P3_4	=	0x00b4
+                           0000B5   271 _P3_5	=	0x00b5
+                           0000B6   272 _P3_6	=	0x00b6
+                           0000B7   273 _P3_7	=	0x00b7
+                           0000B0   274 _RXD	=	0x00b0
+                           0000B1   275 _TXD	=	0x00b1
+                           0000B2   276 _INT0	=	0x00b2
+                           0000B3   277 _INT1	=	0x00b3
+                           0000B4   278 _T0	=	0x00b4
+                           0000B5   279 _T1	=	0x00b5
+                           0000B6   280 _WR	=	0x00b6
+                           0000B7   281 _RD	=	0x00b7
+                           0000B8   282 _PX0	=	0x00b8
+                           0000B9   283 _PT0	=	0x00b9
+                           0000BA   284 _PX1	=	0x00ba
+                           0000BB   285 _PT1	=	0x00bb
+                           0000BC   286 _PS	=	0x00bc
+                           0000D0   287 _P	=	0x00d0
+                           0000D1   288 _F1	=	0x00d1
+                           0000D2   289 _OV	=	0x00d2
+                           0000D3   290 _RS0	=	0x00d3
+                           0000D4   291 _RS1	=	0x00d4
+                           0000D5   292 _F0	=	0x00d5
+                           0000D6   293 _AC	=	0x00d6
+                           0000D7   294 _CY	=	0x00d7
+                           0000AD   295 _ET2	=	0x00ad
+                           0000BD   296 _PT2	=	0x00bd
+                           000090   297 _T2	=	0x0090
+                           000091   298 _T2EX	=	0x0091
+                           0000E8   299 _P4_0	=	0x00e8
+                           0000E9   300 _P4_1	=	0x00e9
+                           0000EA   301 _P4_2	=	0x00ea
+                           0000EB   302 _P4_3	=	0x00eb
+                           0000EA   303 _INT3	=	0x00ea
+                           0000EB   304 _INT2	=	0x00eb
+                           0000C8   305 _CPRL2	=	0x00c8
+                           0000C9   306 _T2_CT	=	0x00c9
+                           0000CA   307 _TR2	=	0x00ca
+                           0000CB   308 _EXEN2	=	0x00cb
+                           0000CC   309 _TCLK	=	0x00cc
+                           0000CD   310 _RCLK	=	0x00cd
+                           0000CE   311 _EXF2	=	0x00ce
+                           0000CF   312 _TF2	=	0x00cf
+                           0000C0   313 _IT2	=	0x00c0
+                           0000C1   314 _IE2	=	0x00c1
+                           0000C2   315 _EX2	=	0x00c2
+                           0000C3   316 _PX2	=	0x00c3
+                           0000C4   317 _IT3	=	0x00c4
+                           0000C5   318 _IE3	=	0x00c5
+                           0000C6   319 _EX3	=	0x00c6
+                           0000C7   320 _PX3	=	0x00c7
+                                    321 ;--------------------------------------------------------
+                                    322 ; overlayable register banks
+                                    323 ;--------------------------------------------------------
+                                    324 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        325 	.ds 8
+                                    326 ;--------------------------------------------------------
+                                    327 ; internal ram data
+                                    328 ;--------------------------------------------------------
+                                    329 	.area DSEG    (DATA)
+      000000                        330 _TIM_calculateValue_PARM_2:
+      000000                        331 	.ds 1
+      000001                        332 _TIM_config_PARM_2:
+      000001                        333 	.ds 3
+                                    334 ;--------------------------------------------------------
+                                    335 ; overlayable items in internal ram
+                                    336 ;--------------------------------------------------------
+                                    337 	.area	OSEG    (OVR,DATA)
+      000000                        338 _TIM_cmd_PARM_2:
+      000000                        339 	.ds 1
+                                    340 	.area	OSEG    (OVR,DATA)
+                                    341 	.area	OSEG    (OVR,DATA)
+                                    342 	.area	OSEG    (OVR,DATA)
+      000000                        343 _TIM_setFunction_PARM_2:
+      000000                        344 	.ds 1
+                                    345 	.area	OSEG    (OVR,DATA)
+      000000                        346 _TIM_setMode_PARM_2:
+      000000                        347 	.ds 1
+                                    348 	.area	OSEG    (OVR,DATA)
+      000000                        349 _TIM_setValue_PARM_2:
+      000000                        350 	.ds 2
+                                    351 	.area	OSEG    (OVR,DATA)
+      000000                        352 _TIM_INT_cmd_PARM_2:
+      000000                        353 	.ds 1
+                                    354 	.area	OSEG    (OVR,DATA)
+      000000                        355 _TIM_INT_setPriority_PARM_2:
+      000000                        356 	.ds 1
+                                    357 ;--------------------------------------------------------
+                                    358 ; indirectly addressable internal ram data
+                                    359 ;--------------------------------------------------------
+                                    360 	.area ISEG    (DATA)
+                                    361 ;--------------------------------------------------------
+                                    362 ; absolute internal ram data
+                                    363 ;--------------------------------------------------------
+                                    364 	.area IABS    (ABS,DATA)
+                                    365 	.area IABS    (ABS,DATA)
+                                    366 ;--------------------------------------------------------
+                                    367 ; bit data
+                                    368 ;--------------------------------------------------------
+                                    369 	.area BSEG    (BIT)
+      000000                        370 _TIM_INT_setPriority_sloc0_1_0:
+      000000                        371 	.ds 1
+                                    372 ;--------------------------------------------------------
+                                    373 ; paged external ram data
+                                    374 ;--------------------------------------------------------
+                                    375 	.area PSEG    (PAG,XDATA)
+                                    376 ;--------------------------------------------------------
+                                    377 ; uninitialized external ram data
+                                    378 ;--------------------------------------------------------
+                                    379 	.area XSEG    (XDATA)
+                                    380 ;--------------------------------------------------------
+                                    381 ; absolute external ram data
+                                    382 ;--------------------------------------------------------
+                                    383 	.area XABS    (ABS,XDATA)
+                                    384 ;--------------------------------------------------------
+                                    385 ; initialized external ram data
+                                    386 ;--------------------------------------------------------
+                                    387 	.area XISEG   (XDATA)
+                                    388 	.area HOME    (CODE)
+                                    389 	.area GSINIT0 (CODE)
+                                    390 	.area GSINIT1 (CODE)
+                                    391 	.area GSINIT2 (CODE)
+                                    392 	.area GSINIT3 (CODE)
+                                    393 	.area GSINIT4 (CODE)
+                                    394 	.area GSINIT5 (CODE)
+                                    395 	.area GSINIT  (CODE)
+                                    396 	.area GSFINAL (CODE)
+                                    397 	.area CSEG    (CODE)
+                                    398 ;--------------------------------------------------------
+                                    399 ; global & static initialisations
+                                    400 ;--------------------------------------------------------
+                                    401 	.area HOME    (CODE)
+                                    402 	.area GSINIT  (CODE)
+                                    403 	.area GSFINAL (CODE)
+                                    404 	.area GSINIT  (CODE)
+                                    405 ;--------------------------------------------------------
+                                    406 ; Home
+                                    407 ;--------------------------------------------------------
+                                    408 	.area HOME    (CODE)
+                                    409 	.area HOME    (CODE)
+                                    410 ;--------------------------------------------------------
+                                    411 ; code
+                                    412 ;--------------------------------------------------------
+                                    413 	.area CSEG    (CODE)
+                                    414 ;------------------------------------------------------------
+                                    415 ;Allocation info for local variables in function 'TIM_calculateValue'
+                                    416 ;------------------------------------------------------------
+                                    417 ;mode          Allocated with name '_TIM_calculateValue_PARM_2'
+                                    418 ;time          Allocated to registers r6 r7 
+                                    419 ;maxTick       Allocated to registers r4 r5 
+                                    420 ;t             Allocated to registers r2 r3 
+                                    421 ;------------------------------------------------------------
+                                    422 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:28: uint16_t TIM_calculateValue(uint16_t time, TIM_mode mode)
+                                    423 ;	-----------------------------------------
+                                    424 ;	 function TIM_calculateValue
+                                    425 ;	-----------------------------------------
+      000000                        426 _TIM_calculateValue:
+                           000007   427 	ar7 = 0x07
+                           000006   428 	ar6 = 0x06
+                           000005   429 	ar5 = 0x05
+                           000004   430 	ar4 = 0x04
+                           000003   431 	ar3 = 0x03
+                           000002   432 	ar2 = 0x02
+                           000001   433 	ar1 = 0x01
+                           000000   434 	ar0 = 0x00
+      000000 AE 82            [24]  435 	mov	r6, dpl
+      000002 AF 83            [24]  436 	mov	r7, dph
+                                    437 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:31: uint16_t maxTick = 0x0000;
+      000004 7C 00            [12]  438 	mov	r4,#0x00
+      000006 7D 00            [12]  439 	mov	r5,#0x00
+                                    440 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:32: uint16_t t       = time*(MCU_FRE_CLK/1000000)/MCU_PRESCALER;
+      000008 8E*00            [24]  441 	mov	__mullong_PARM_2,r6
+      00000A 8F*01            [24]  442 	mov	(__mullong_PARM_2 + 1),r7
+      00000C 8D*02            [24]  443 	mov	(__mullong_PARM_2 + 2),r5
+      00000E 8D*03            [24]  444 	mov	(__mullong_PARM_2 + 3),r5
+      000010 90 00 0B         [24]  445 	mov	dptr,#0x000b
+      000013 E4               [12]  446 	clr	a
+      000014 F5 F0            [12]  447 	mov	b,a
+      000016 C0 05            [24]  448 	push	ar5
+      000018 C0 04            [24]  449 	push	ar4
+      00001A 12r00r00         [24]  450 	lcall	__mullong
+      00001D AA 82            [24]  451 	mov	r2, dpl
+      00001F AB 83            [24]  452 	mov	r3, dph
+      000021 AE F0            [24]  453 	mov	r6, b
+      000023 FF               [12]  454 	mov	r7, a
+      000024 75*00 0C         [24]  455 	mov	__divulong_PARM_2,#0x0c
+      000027 E4               [12]  456 	clr	a
+      000028 F5*01            [12]  457 	mov	(__divulong_PARM_2 + 1),a
+      00002A F5*02            [12]  458 	mov	(__divulong_PARM_2 + 2),a
+      00002C F5*03            [12]  459 	mov	(__divulong_PARM_2 + 3),a
+      00002E 8A 82            [24]  460 	mov	dpl, r2
+      000030 8B 83            [24]  461 	mov	dph, r3
+      000032 8E F0            [24]  462 	mov	b, r6
+      000034 EF               [12]  463 	mov	a, r7
+      000035 12r00r00         [24]  464 	lcall	__divulong
+      000038 AA 82            [24]  465 	mov	r2, dpl
+      00003A AB 83            [24]  466 	mov	r3, dph
+      00003C AE F0            [24]  467 	mov	r6, b
+      00003E FF               [12]  468 	mov	r7, a
+      00003F D0 04            [24]  469 	pop	ar4
+      000041 D0 05            [24]  470 	pop	ar5
+                                    471 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:34: switch (mode)
+      000043 E5*00            [12]  472 	mov	a,_TIM_calculateValue_PARM_2
+      000045 24 FC            [12]  473 	add	a,#0xff - 0x03
+      000047 40 2C            [24]  474 	jc	00106$
+      000049 E5*00            [12]  475 	mov	a,_TIM_calculateValue_PARM_2
+      00004B 75 F0 03         [24]  476 	mov	b,#0x03
+      00004E A4               [48]  477 	mul	ab
+      00004F 90r00r53         [24]  478 	mov	dptr,#00125$
+      000052 73               [24]  479 	jmp	@a+dptr
+      000053                        480 00125$:
+      000053 02r00r5F         [24]  481 	ljmp	00101$
+      000056 02r00r65         [24]  482 	ljmp	00102$
+      000059 02r00r6B         [24]  483 	ljmp	00103$
+      00005C 02r00r71         [24]  484 	ljmp	00104$
+                                    485 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:36: case TIM_mode_0: maxTick = 0x1FFF; break;
+      00005F                        486 00101$:
+      00005F 7C FF            [12]  487 	mov	r4,#0xff
+      000061 7D 1F            [12]  488 	mov	r5,#0x1f
+                                    489 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:37: case TIM_mode_1: maxTick = 0xFFFF; break;
+      000063 80 10            [24]  490 	sjmp	00106$
+      000065                        491 00102$:
+      000065 7C FF            [12]  492 	mov	r4,#0xff
+      000067 7D FF            [12]  493 	mov	r5,#0xff
+                                    494 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:38: case TIM_mode_2: maxTick = 0x00FF; break;
+      000069 80 0A            [24]  495 	sjmp	00106$
+      00006B                        496 00103$:
+      00006B 7C FF            [12]  497 	mov	r4,#0xff
+      00006D 7D 00            [12]  498 	mov	r5,#0x00
+                                    499 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:39: case TIM_mode_3: maxTick = 0x00FF; break;
+      00006F 80 04            [24]  500 	sjmp	00106$
+      000071                        501 00104$:
+      000071 7C FF            [12]  502 	mov	r4,#0xff
+      000073 7D 00            [12]  503 	mov	r5,#0x00
+                                    504 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:41: }
+      000075                        505 00106$:
+                                    506 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:43: if (t >= maxTick)
+      000075 C3               [12]  507 	clr	c
+      000076 EA               [12]  508 	mov	a,r2
+      000077 9C               [12]  509 	subb	a,r4
+      000078 EB               [12]  510 	mov	a,r3
+      000079 9D               [12]  511 	subb	a,r5
+      00007A 40 04            [24]  512 	jc	00108$
+                                    513 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:45: return 0x0000;
+      00007C 90 00 00         [24]  514 	mov	dptr,#0x0000
+      00007F 22               [24]  515 	ret
+      000080                        516 00108$:
+                                    517 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:49: return (maxTick + 1 - t);
+      000080 0C               [12]  518 	inc	r4
+      000081 BC 00 01         [24]  519 	cjne	r4,#0x00,00127$
+      000084 0D               [12]  520 	inc	r5
+      000085                        521 00127$:
+      000085 EC               [12]  522 	mov	a,r4
+      000086 C3               [12]  523 	clr	c
+      000087 9A               [12]  524 	subb	a,r2
+      000088 F5 82            [12]  525 	mov	dpl,a
+      00008A ED               [12]  526 	mov	a,r5
+      00008B 9B               [12]  527 	subb	a,r3
+      00008C F5 83            [12]  528 	mov	dph,a
+                                    529 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:51: }
+      00008E 22               [24]  530 	ret
+                                    531 ;------------------------------------------------------------
+                                    532 ;Allocation info for local variables in function 'TIM_cmd'
+                                    533 ;------------------------------------------------------------
+                                    534 ;a             Allocated with name '_TIM_cmd_PARM_2'
+                                    535 ;tim           Allocated to registers r7 
+                                    536 ;------------------------------------------------------------
+                                    537 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:64: void TIM_cmd(PERIPH_TIM tim, Action a)
+                                    538 ;	-----------------------------------------
+                                    539 ;	 function TIM_cmd
+                                    540 ;	-----------------------------------------
+      00008F                        541 _TIM_cmd:
+      00008F AF 82            [24]  542 	mov	r7, dpl
+                                    543 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:66: switch (tim)
+      000091 BF 00 02         [24]  544 	cjne	r7,#0x00,00119$
+      000094 80 05            [24]  545 	sjmp	00101$
+      000096                        546 00119$:
+                                    547 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:68: case PERIPH_TIM_0: TR0 = a; break;
+      000096 BF 01 0F         [24]  548 	cjne	r7,#0x01,00105$
+      000099 80 07            [24]  549 	sjmp	00102$
+      00009B                        550 00101$:
+      00009B E5*00            [12]  551 	mov	a,_TIM_cmd_PARM_2
+      00009D 24 FF            [12]  552 	add	a,#0xff
+      00009F 92 8C            [24]  553 	mov	_TR0,c
+                                    554 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:69: case PERIPH_TIM_1: TR1 = a; break;
+      0000A1 22               [24]  555 	ret
+      0000A2                        556 00102$:
+      0000A2 E5*00            [12]  557 	mov	a,_TIM_cmd_PARM_2
+      0000A4 24 FF            [12]  558 	add	a,#0xff
+      0000A6 92 8E            [24]  559 	mov	_TR1,c
+                                    560 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:71: }
+      0000A8                        561 00105$:
+                                    562 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:72: }
+      0000A8 22               [24]  563 	ret
+                                    564 ;------------------------------------------------------------
+                                    565 ;Allocation info for local variables in function 'TIM_config'
+                                    566 ;------------------------------------------------------------
+                                    567 ;tc            Allocated with name '_TIM_config_PARM_2'
+                                    568 ;tim           Allocated to registers r7 
+                                    569 ;------------------------------------------------------------
+                                    570 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:85: void TIM_config(PERIPH_TIM tim, TIM_configTypeDef *tc)
+                                    571 ;	-----------------------------------------
+                                    572 ;	 function TIM_config
+                                    573 ;	-----------------------------------------
+      0000A9                        574 _TIM_config:
+      0000A9 AF 82            [24]  575 	mov	r7, dpl
+                                    576 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:87: TIM_setFunction(tim, tc->function);
+      0000AB AC*01            [24]  577 	mov	r4,_TIM_config_PARM_2
+      0000AD AD*02            [24]  578 	mov	r5,(_TIM_config_PARM_2 + 1)
+      0000AF AE*03            [24]  579 	mov	r6,(_TIM_config_PARM_2 + 2)
+      0000B1 8C 01            [24]  580 	mov	ar1,r4
+      0000B3 8D 02            [24]  581 	mov	ar2,r5
+      0000B5 8E 03            [24]  582 	mov	ar3,r6
+      0000B7 89 82            [24]  583 	mov	dpl,r1
+      0000B9 8A 83            [24]  584 	mov	dph,r2
+      0000BB 8B F0            [24]  585 	mov	b,r3
+      0000BD 12r00r00         [24]  586 	lcall	__gptrget
+      0000C0 F5*00            [12]  587 	mov	_TIM_setFunction_PARM_2,a
+      0000C2 8F 82            [24]  588 	mov	dpl, r7
+      0000C4 C0 07            [24]  589 	push	ar7
+      0000C6 C0 06            [24]  590 	push	ar6
+      0000C8 C0 05            [24]  591 	push	ar5
+      0000CA C0 04            [24]  592 	push	ar4
+      0000CC 12r01rC3         [24]  593 	lcall	_TIM_setFunction
+      0000CF D0 04            [24]  594 	pop	ar4
+      0000D1 D0 05            [24]  595 	pop	ar5
+      0000D3 D0 06            [24]  596 	pop	ar6
+      0000D5 D0 07            [24]  597 	pop	ar7
+                                    598 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:88: TIM_setMode(tim, tc->mode);
+      0000D7 74 03            [12]  599 	mov	a,#0x03
+      0000D9 2C               [12]  600 	add	a, r4
+      0000DA F9               [12]  601 	mov	r1,a
+      0000DB E4               [12]  602 	clr	a
+      0000DC 3D               [12]  603 	addc	a, r5
+      0000DD FA               [12]  604 	mov	r2,a
+      0000DE 8E 03            [24]  605 	mov	ar3,r6
+      0000E0 89 82            [24]  606 	mov	dpl,r1
+      0000E2 8A 83            [24]  607 	mov	dph,r2
+      0000E4 8B F0            [24]  608 	mov	b,r3
+      0000E6 12r00r00         [24]  609 	lcall	__gptrget
+      0000E9 F5*00            [12]  610 	mov	_TIM_setMode_PARM_2,a
+      0000EB 8F 82            [24]  611 	mov	dpl, r7
+      0000ED C0 07            [24]  612 	push	ar7
+      0000EF C0 06            [24]  613 	push	ar6
+      0000F1 C0 05            [24]  614 	push	ar5
+      0000F3 C0 04            [24]  615 	push	ar4
+      0000F5 12r01rED         [24]  616 	lcall	_TIM_setMode
+      0000F8 D0 04            [24]  617 	pop	ar4
+      0000FA D0 05            [24]  618 	pop	ar5
+      0000FC D0 06            [24]  619 	pop	ar6
+      0000FE D0 07            [24]  620 	pop	ar7
+                                    621 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:89: TIM_setValue(tim, tc->value);
+      000100 74 04            [12]  622 	mov	a,#0x04
+      000102 2C               [12]  623 	add	a, r4
+      000103 F9               [12]  624 	mov	r1,a
+      000104 E4               [12]  625 	clr	a
+      000105 3D               [12]  626 	addc	a, r5
+      000106 FA               [12]  627 	mov	r2,a
+      000107 8E 03            [24]  628 	mov	ar3,r6
+      000109 89 82            [24]  629 	mov	dpl,r1
+      00010B 8A 83            [24]  630 	mov	dph,r2
+      00010D 8B F0            [24]  631 	mov	b,r3
+      00010F 12r00r00         [24]  632 	lcall	__gptrget
+      000112 F5*00            [12]  633 	mov	_TIM_setValue_PARM_2,a
+      000114 A3               [24]  634 	inc	dptr
+      000115 12r00r00         [24]  635 	lcall	__gptrget
+      000118 F5*01            [12]  636 	mov	(_TIM_setValue_PARM_2 + 1),a
+      00011A 8F 82            [24]  637 	mov	dpl, r7
+      00011C C0 07            [24]  638 	push	ar7
+      00011E C0 06            [24]  639 	push	ar6
+      000120 C0 05            [24]  640 	push	ar5
+      000122 C0 04            [24]  641 	push	ar4
+      000124 12r02r12         [24]  642 	lcall	_TIM_setValue
+      000127 D0 04            [24]  643 	pop	ar4
+      000129 D0 05            [24]  644 	pop	ar5
+      00012B D0 06            [24]  645 	pop	ar6
+      00012D D0 07            [24]  646 	pop	ar7
+                                    647 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:90: TIM_INT_cmd(tim, tc->interruptState);
+      00012F 74 01            [12]  648 	mov	a,#0x01
+      000131 2C               [12]  649 	add	a, r4
+      000132 F9               [12]  650 	mov	r1,a
+      000133 E4               [12]  651 	clr	a
+      000134 3D               [12]  652 	addc	a, r5
+      000135 FA               [12]  653 	mov	r2,a
+      000136 8E 03            [24]  654 	mov	ar3,r6
+      000138 89 82            [24]  655 	mov	dpl,r1
+      00013A 8A 83            [24]  656 	mov	dph,r2
+      00013C 8B F0            [24]  657 	mov	b,r3
+      00013E 12r00r00         [24]  658 	lcall	__gptrget
+      000141 F5*00            [12]  659 	mov	_TIM_INT_cmd_PARM_2,a
+      000143 8F 82            [24]  660 	mov	dpl, r7
+      000145 C0 07            [24]  661 	push	ar7
+      000147 C0 06            [24]  662 	push	ar6
+      000149 C0 05            [24]  663 	push	ar5
+      00014B C0 04            [24]  664 	push	ar4
+      00014D 12r02r2C         [24]  665 	lcall	_TIM_INT_cmd
+      000150 D0 04            [24]  666 	pop	ar4
+      000152 D0 05            [24]  667 	pop	ar5
+      000154 D0 06            [24]  668 	pop	ar6
+      000156 D0 07            [24]  669 	pop	ar7
+                                    670 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:91: TIM_INT_setPriority(tim, tc->interruptPriority);
+      000158 74 02            [12]  671 	mov	a,#0x02
+      00015A 2C               [12]  672 	add	a, r4
+      00015B FC               [12]  673 	mov	r4,a
+      00015C E4               [12]  674 	clr	a
+      00015D 3D               [12]  675 	addc	a, r5
+      00015E FD               [12]  676 	mov	r5,a
+      00015F 8C 82            [24]  677 	mov	dpl,r4
+      000161 8D 83            [24]  678 	mov	dph,r5
+      000163 8E F0            [24]  679 	mov	b,r6
+      000165 12r00r00         [24]  680 	lcall	__gptrget
+      000168 F5*00            [12]  681 	mov	_TIM_INT_setPriority_PARM_2,a
+      00016A 8F 82            [24]  682 	mov	dpl, r7
+                                    683 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:92: }
+      00016C 02r02r46         [24]  684 	ljmp	_TIM_INT_setPriority
+                                    685 ;------------------------------------------------------------
+                                    686 ;Allocation info for local variables in function 'TIM_getValue'
+                                    687 ;------------------------------------------------------------
+                                    688 ;tim           Allocated to registers r7 
+                                    689 ;------------------------------------------------------------
+                                    690 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:105: uint16_t TIM_getValue(PERIPH_TIM tim)
+                                    691 ;	-----------------------------------------
+                                    692 ;	 function TIM_getValue
+                                    693 ;	-----------------------------------------
+      00016F                        694 _TIM_getValue:
+      00016F AF 82            [24]  695 	mov	r7, dpl
+                                    696 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:107: switch (tim)
+      000171 BF 00 02         [24]  697 	cjne	r7,#0x00,00119$
+      000174 80 05            [24]  698 	sjmp	00101$
+      000176                        699 00119$:
+                                    700 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:109: case PERIPH_TIM_0: return ((TH0 << 0x08) | TL0);
+      000176 BF 01 28         [24]  701 	cjne	r7,#0x01,00103$
+      000179 80 13            [24]  702 	sjmp	00102$
+      00017B                        703 00101$:
+      00017B AF 8C            [24]  704 	mov	r7,_TH0
+      00017D 7E 00            [12]  705 	mov	r6,#0x00
+      00017F AC 8A            [24]  706 	mov	r4,_TL0
+      000181 7D 00            [12]  707 	mov	r5,#0x00
+      000183 EC               [12]  708 	mov	a,r4
+      000184 42 06            [12]  709 	orl	ar6,a
+      000186 ED               [12]  710 	mov	a,r5
+      000187 42 07            [12]  711 	orl	ar7,a
+      000189 8E 82            [24]  712 	mov	dpl,r6
+      00018B 8F 83            [24]  713 	mov	dph,r7
+                                    714 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:110: case PERIPH_TIM_1: return ((TH1 << 0x08) | TL1);
+      00018D 22               [24]  715 	ret
+      00018E                        716 00102$:
+      00018E AF 8D            [24]  717 	mov	r7,_TH1
+      000190 7E 00            [12]  718 	mov	r6,#0x00
+      000192 AC 8B            [24]  719 	mov	r4,_TL1
+      000194 7D 00            [12]  720 	mov	r5,#0x00
+      000196 EC               [12]  721 	mov	a,r4
+      000197 42 06            [12]  722 	orl	ar6,a
+      000199 ED               [12]  723 	mov	a,r5
+      00019A 42 07            [12]  724 	orl	ar7,a
+      00019C 8E 82            [24]  725 	mov	dpl,r6
+      00019E 8F 83            [24]  726 	mov	dph,r7
+                                    727 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:111: default: return 0x0000;
+      0001A0 22               [24]  728 	ret
+      0001A1                        729 00103$:
+      0001A1 90 00 00         [24]  730 	mov	dptr,#0x0000
+                                    731 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:112: }
+                                    732 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:113: }
+      0001A4 22               [24]  733 	ret
+                                    734 ;------------------------------------------------------------
+                                    735 ;Allocation info for local variables in function 'TIM_isOverflow'
+                                    736 ;------------------------------------------------------------
+                                    737 ;tim           Allocated to registers r7 
+                                    738 ;------------------------------------------------------------
+                                    739 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:126: bool TIM_isOverflow(PERIPH_TIM tim)
+                                    740 ;	-----------------------------------------
+                                    741 ;	 function TIM_isOverflow
+                                    742 ;	-----------------------------------------
+      0001A5                        743 _TIM_isOverflow:
+      0001A5 AF 82            [24]  744 	mov	r7, dpl
+                                    745 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:128: switch (tim)
+      0001A7 BF 00 02         [24]  746 	cjne	r7,#0x00,00119$
+      0001AA 80 05            [24]  747 	sjmp	00101$
+      0001AC                        748 00119$:
+                                    749 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:130: case PERIPH_TIM_0: return (bool)TF0;
+      0001AC BF 01 10         [24]  750 	cjne	r7,#0x01,00103$
+      0001AF 80 07            [24]  751 	sjmp	00102$
+      0001B1                        752 00101$:
+      0001B1 A2 8D            [12]  753 	mov	c,_TF0
+      0001B3 E4               [12]  754 	clr	a
+      0001B4 33               [12]  755 	rlc	a
+      0001B5 F5 82            [12]  756 	mov	dpl,a
+                                    757 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:131: case PERIPH_TIM_1: return (bool)TF1;
+      0001B7 22               [24]  758 	ret
+      0001B8                        759 00102$:
+      0001B8 A2 8F            [12]  760 	mov	c,_TF1
+      0001BA E4               [12]  761 	clr	a
+      0001BB 33               [12]  762 	rlc	a
+      0001BC F5 82            [12]  763 	mov	dpl,a
+                                    764 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:132: default: return false;
+      0001BE 22               [24]  765 	ret
+      0001BF                        766 00103$:
+      0001BF 75 82 00         [24]  767 	mov	dpl, #0x00
+                                    768 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:133: }
+                                    769 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:134: }
+      0001C2 22               [24]  770 	ret
+                                    771 ;------------------------------------------------------------
+                                    772 ;Allocation info for local variables in function 'TIM_setFunction'
+                                    773 ;------------------------------------------------------------
+                                    774 ;f             Allocated with name '_TIM_setFunction_PARM_2'
+                                    775 ;tim           Allocated to registers r7 
+                                    776 ;------------------------------------------------------------
+                                    777 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:147: void TIM_setFunction(PERIPH_TIM tim, TIM_function f)
+                                    778 ;	-----------------------------------------
+                                    779 ;	 function TIM_setFunction
+                                    780 ;	-----------------------------------------
+      0001C3                        781 _TIM_setFunction:
+      0001C3 AF 82            [24]  782 	mov	r7, dpl
+                                    783 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:149: switch (tim)
+      0001C5 BF 00 02         [24]  784 	cjne	r7,#0x00,00119$
+      0001C8 80 05            [24]  785 	sjmp	00101$
+      0001CA                        786 00119$:
+                                    787 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:151: case PERIPH_TIM_0: CONFB(TMOD, BIT_NUM_T0_CT, f); break;
+      0001CA BF 01 1F         [24]  788 	cjne	r7,#0x01,00105$
+      0001CD 80 0F            [24]  789 	sjmp	00102$
+      0001CF                        790 00101$:
+      0001CF 74 FB            [12]  791 	mov	a,#0xfb
+      0001D1 55 89            [12]  792 	anl	a,_TMOD
+      0001D3 FF               [12]  793 	mov	r7,a
+      0001D4 E5*00            [12]  794 	mov	a,_TIM_setFunction_PARM_2
+      0001D6 25 E0            [12]  795 	add	a,acc
+      0001D8 25 E0            [12]  796 	add	a,acc
+      0001DA 4F               [12]  797 	orl	a,r7
+      0001DB F5 89            [12]  798 	mov	_TMOD,a
+                                    799 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:152: case PERIPH_TIM_1: CONFB(TMOD, BIT_NUM_T1_CT, f); break;
+      0001DD 22               [24]  800 	ret
+      0001DE                        801 00102$:
+      0001DE 74 BF            [12]  802 	mov	a,#0xbf
+      0001E0 55 89            [12]  803 	anl	a,_TMOD
+      0001E2 FF               [12]  804 	mov	r7,a
+      0001E3 E5*00            [12]  805 	mov	a,_TIM_setFunction_PARM_2
+      0001E5 03               [12]  806 	rr	a
+      0001E6 03               [12]  807 	rr	a
+      0001E7 54 C0            [12]  808 	anl	a,#0xc0
+      0001E9 4F               [12]  809 	orl	a,r7
+      0001EA F5 89            [12]  810 	mov	_TMOD,a
+                                    811 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:154: }
+      0001EC                        812 00105$:
+                                    813 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:155: }
+      0001EC 22               [24]  814 	ret
+                                    815 ;------------------------------------------------------------
+                                    816 ;Allocation info for local variables in function 'TIM_setMode'
+                                    817 ;------------------------------------------------------------
+                                    818 ;mode          Allocated with name '_TIM_setMode_PARM_2'
+                                    819 ;tim           Allocated to registers r7 
+                                    820 ;------------------------------------------------------------
+                                    821 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:168: void TIM_setMode(PERIPH_TIM tim, TIM_mode mode)
+                                    822 ;	-----------------------------------------
+                                    823 ;	 function TIM_setMode
+                                    824 ;	-----------------------------------------
+      0001ED                        825 _TIM_setMode:
+      0001ED AF 82            [24]  826 	mov	r7, dpl
+                                    827 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:170: switch (tim)
+      0001EF BF 00 02         [24]  828 	cjne	r7,#0x00,00119$
+      0001F2 80 05            [24]  829 	sjmp	00101$
+      0001F4                        830 00119$:
+                                    831 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:172: case PERIPH_TIM_0: TMOD = (TMOD & 0xFC) | mode; break;
+      0001F4 BF 01 1A         [24]  832 	cjne	r7,#0x01,00105$
+      0001F7 80 0B            [24]  833 	sjmp	00102$
+      0001F9                        834 00101$:
+      0001F9 E5 89            [12]  835 	mov	a,_TMOD
+      0001FB 54 FC            [12]  836 	anl	a,#0xfc
+      0001FD FF               [12]  837 	mov	r7,a
+      0001FE E5*00            [12]  838 	mov	a,_TIM_setMode_PARM_2
+      000200 4F               [12]  839 	orl	a,r7
+      000201 F5 89            [12]  840 	mov	_TMOD,a
+                                    841 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:173: case PERIPH_TIM_1: TMOD = (TMOD & 0xCF) | (mode << 0x4); break;
+      000203 22               [24]  842 	ret
+      000204                        843 00102$:
+      000204 E5 89            [12]  844 	mov	a,_TMOD
+      000206 54 CF            [12]  845 	anl	a,#0xcf
+      000208 FF               [12]  846 	mov	r7,a
+      000209 E5*00            [12]  847 	mov	a,_TIM_setMode_PARM_2
+      00020B C4               [12]  848 	swap	a
+      00020C 54 F0            [12]  849 	anl	a,#0xf0
+      00020E 4F               [12]  850 	orl	a,r7
+      00020F F5 89            [12]  851 	mov	_TMOD,a
+                                    852 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:175: }
+      000211                        853 00105$:
+                                    854 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:176: }
+      000211 22               [24]  855 	ret
+                                    856 ;------------------------------------------------------------
+                                    857 ;Allocation info for local variables in function 'TIM_setValue'
+                                    858 ;------------------------------------------------------------
+                                    859 ;val           Allocated with name '_TIM_setValue_PARM_2'
+                                    860 ;tim           Allocated to registers r7 
+                                    861 ;------------------------------------------------------------
+                                    862 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:189: void TIM_setValue(PERIPH_TIM tim, uint16_t val)
+                                    863 ;	-----------------------------------------
+                                    864 ;	 function TIM_setValue
+                                    865 ;	-----------------------------------------
+      000212                        866 _TIM_setValue:
+      000212 AF 82            [24]  867 	mov	r7, dpl
+                                    868 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:191: switch (tim)
+      000214 BF 00 02         [24]  869 	cjne	r7,#0x00,00119$
+      000217 80 05            [24]  870 	sjmp	00101$
+      000219                        871 00119$:
+                                    872 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:193: case PERIPH_TIM_0:
+      000219 BF 01 0F         [24]  873 	cjne	r7,#0x01,00105$
+      00021C 80 07            [24]  874 	sjmp	00102$
+      00021E                        875 00101$:
+                                    876 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:195: TH0 = (uint8_t)((val >> 0x8) & 0x00FF);
+      00021E 85*01 8C         [24]  877 	mov	_TH0,(_TIM_setValue_PARM_2 + 1)
+                                    878 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:196: TL0 = (uint8_t)(val & 0x00FF);
+      000221 85*00 8A         [24]  879 	mov	_TL0,_TIM_setValue_PARM_2
+                                    880 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:197: } break;
+                                    881 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:198: case PERIPH_TIM_1:
+      000224 22               [24]  882 	ret
+      000225                        883 00102$:
+                                    884 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:200: TH1 = (uint8_t)((val >> 0x8) & 0x00FF);
+      000225 85*01 8D         [24]  885 	mov	_TH1,(_TIM_setValue_PARM_2 + 1)
+                                    886 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:201: TL1 = (uint8_t)(val & 0x00FF);
+      000228 85*00 8B         [24]  887 	mov	_TL1,_TIM_setValue_PARM_2
+                                    888 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:204: }
+      00022B                        889 00105$:
+                                    890 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:205: }
+      00022B 22               [24]  891 	ret
+                                    892 ;------------------------------------------------------------
+                                    893 ;Allocation info for local variables in function 'TIM_INT_cmd'
+                                    894 ;------------------------------------------------------------
+                                    895 ;a             Allocated with name '_TIM_INT_cmd_PARM_2'
+                                    896 ;tim           Allocated to registers r7 
+                                    897 ;------------------------------------------------------------
+                                    898 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:218: void TIM_INT_cmd(PERIPH_TIM tim, Action a)
+                                    899 ;	-----------------------------------------
+                                    900 ;	 function TIM_INT_cmd
+                                    901 ;	-----------------------------------------
+      00022C                        902 _TIM_INT_cmd:
+      00022C AF 82            [24]  903 	mov	r7, dpl
+                                    904 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:220: switch (tim)
+      00022E BF 00 02         [24]  905 	cjne	r7,#0x00,00119$
+      000231 80 05            [24]  906 	sjmp	00101$
+      000233                        907 00119$:
+                                    908 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:222: case PERIPH_TIM_0: ET0 = a; break;
+      000233 BF 01 0F         [24]  909 	cjne	r7,#0x01,00105$
+      000236 80 07            [24]  910 	sjmp	00102$
+      000238                        911 00101$:
+      000238 E5*00            [12]  912 	mov	a,_TIM_INT_cmd_PARM_2
+      00023A 24 FF            [12]  913 	add	a,#0xff
+      00023C 92 A9            [24]  914 	mov	_ET0,c
+                                    915 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:223: case PERIPH_TIM_1: ET1 = a; break;
+      00023E 22               [24]  916 	ret
+      00023F                        917 00102$:
+      00023F E5*00            [12]  918 	mov	a,_TIM_INT_cmd_PARM_2
+      000241 24 FF            [12]  919 	add	a,#0xff
+      000243 92 AB            [24]  920 	mov	_ET1,c
+                                    921 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:225: }
+      000245                        922 00105$:
+                                    923 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:226: }
+      000245 22               [24]  924 	ret
+                                    925 ;------------------------------------------------------------
+                                    926 ;Allocation info for local variables in function 'TIM_INT_setPriority'
+                                    927 ;------------------------------------------------------------
+                                    928 ;p             Allocated with name '_TIM_INT_setPriority_PARM_2'
+                                    929 ;tim           Allocated to registers r7 
+                                    930 ;------------------------------------------------------------
+                                    931 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:239: void TIM_INT_setPriority(PERIPH_TIM tim, UTIL_interruptPriority p)
+                                    932 ;	-----------------------------------------
+                                    933 ;	 function TIM_INT_setPriority
+                                    934 ;	-----------------------------------------
+      000246                        935 _TIM_INT_setPriority:
+      000246 AF 82            [24]  936 	mov	r7, dpl
+                                    937 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:241: switch (tim)
+      000248 BF 00 02         [24]  938 	cjne	r7,#0x00,00119$
+      00024B 80 05            [24]  939 	sjmp	00101$
+      00024D                        940 00119$:
+                                    941 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:243: case PERIPH_TIM_0:
+      00024D BF 01 53         [24]  942 	cjne	r7,#0x01,00105$
+      000250 80 28            [24]  943 	sjmp	00102$
+      000252                        944 00101$:
+                                    945 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:245: PT0 = TESTB(p, 0);
+      000252 E5*00            [12]  946 	mov	a,_TIM_INT_setPriority_PARM_2
+      000254 54 01            [12]  947 	anl	a,#0x01
+      000256 B4 01 00         [24]  948 	cjne	a,#0x01,00121$
+      000259                        949 00121$:
+      000259 B3               [12]  950 	cpl	c
+      00025A 92*00            [24]  951 	mov	_TIM_INT_setPriority_sloc0_1_0,c
+      00025C E4               [12]  952 	clr	a
+      00025D 33               [12]  953 	rlc	a
+      00025E 24 FF            [12]  954 	add	a,#0xff
+      000260 92 B9            [24]  955 	mov	_PT0,c
+                                    956 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:246: CONFB(IPH, BIT_NUM_PT0H, TESTB(p, 1));
+      000262 74 FD            [12]  957 	mov	a,#0xfd
+      000264 55 B7            [12]  958 	anl	a,_IPH
+      000266 FF               [12]  959 	mov	r7,a
+      000267 E5*00            [12]  960 	mov	a,_TIM_INT_setPriority_PARM_2
+      000269 03               [12]  961 	rr	a
+      00026A 54 01            [12]  962 	anl	a,#0x01
+      00026C B4 01 00         [24]  963 	cjne	a,#0x01,00122$
+      00026F                        964 00122$:
+      00026F B3               [12]  965 	cpl	c
+      000270 92*00            [24]  966 	mov	_TIM_INT_setPriority_sloc0_1_0,c
+      000272 E4               [12]  967 	clr	a
+      000273 33               [12]  968 	rlc	a
+      000274 25 E0            [12]  969 	add	a,acc
+      000276 4F               [12]  970 	orl	a,r7
+      000277 F5 B7            [12]  971 	mov	_IPH,a
+                                    972 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:247: } break;
+                                    973 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:248: case PERIPH_TIM_1:
+      000279 22               [24]  974 	ret
+      00027A                        975 00102$:
+                                    976 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:250: PT1 = TESTB(p, 0);
+      00027A E5*00            [12]  977 	mov	a,_TIM_INT_setPriority_PARM_2
+      00027C 54 01            [12]  978 	anl	a,#0x01
+      00027E B4 01 00         [24]  979 	cjne	a,#0x01,00123$
+      000281                        980 00123$:
+      000281 B3               [12]  981 	cpl	c
+      000282 92*00            [24]  982 	mov	_TIM_INT_setPriority_sloc0_1_0,c
+      000284 E4               [12]  983 	clr	a
+      000285 33               [12]  984 	rlc	a
+      000286 24 FF            [12]  985 	add	a,#0xff
+      000288 92 BB            [24]  986 	mov	_PT1,c
+                                    987 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:251: CONFB(IPH, BIT_NUM_PT1H, TESTB(p, 1));
+      00028A 74 F7            [12]  988 	mov	a,#0xf7
+      00028C 55 B7            [12]  989 	anl	a,_IPH
+      00028E FF               [12]  990 	mov	r7,a
+      00028F E5*00            [12]  991 	mov	a,_TIM_INT_setPriority_PARM_2
+      000291 03               [12]  992 	rr	a
+      000292 54 01            [12]  993 	anl	a,#0x01
+      000294 B4 01 00         [24]  994 	cjne	a,#0x01,00124$
+      000297                        995 00124$:
+      000297 B3               [12]  996 	cpl	c
+      000298 92*00            [24]  997 	mov	_TIM_INT_setPriority_sloc0_1_0,c
+      00029A E4               [12]  998 	clr	a
+      00029B 33               [12]  999 	rlc	a
+      00029C C4               [12] 1000 	swap	a
+      00029D 03               [12] 1001 	rr	a
+      00029E 54 F8            [12] 1002 	anl	a,#0xf8
+      0002A0 4F               [12] 1003 	orl	a,r7
+      0002A1 F5 B7            [12] 1004 	mov	_IPH,a
+                                   1005 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:254: }
+      0002A3                       1006 00105$:
+                                   1007 ;	/home/carver/Documents/mac_OS_8051/HML_FwLib_STC89/src/tim.c:255: }
+      0002A3 22               [24] 1008 	ret
+                                   1009 	.area CSEG    (CODE)
+                                   1010 	.area CONST   (CODE)
+                                   1011 	.area XINIT   (CODE)
+                                   1012 	.area CABS    (ABS,CODE)

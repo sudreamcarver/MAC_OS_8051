@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "SDCC",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/inc",
+                // 请将此路径替换为你的 SDCC 安装路径
+                "/usr/share/sdcc/include"
+            ],
+            "defines": [
+                // 模拟 STC89C52RC 的宏定义，确保 IntelliSense 正确识别
+                "__CONF_MCU_MODEL=MCU_MODEL_STC89C52RC",
+                "__CONF_FRE_CLKIN=11059200UL",
+                "__sdcc_naked",
+                "__interrupt",
+                "__code"
+            ],
+            "compilerPath": "/usr/bin/sdcc",
+            "cStandard": "c99",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
