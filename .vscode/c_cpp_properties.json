@@ -6,7 +6,7 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/inc",
                 // 请将此路径替换为你的 SDCC 安装路径
-                "/usr/share/sdcc/include"
+                "/Users/a1/Documents/MAC_OS_8051/inc"
             ],
             "defines": [
                 // 模拟 STC89C52RC 的宏定义，确保 IntelliSense 正确识别
@@ -16,9 +16,9 @@
                 "__interrupt",
                 "__code"
             ],
-            "compilerPath": "/usr/bin/sdcc",
+            "compilerPath": "/opt/homebrew/bin/sdcc",
             "cStandard": "c99",
-            "intelliSenseMode": "linux-gcc-x64"
+            "intelliSenseMode": "macos-gcc-x64"
         }
     ],
     "version": 4
