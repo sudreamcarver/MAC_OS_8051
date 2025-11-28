@@ -38,7 +38,7 @@ XRAM      ?=
 #    It's noticed that once use this option to compile specified .c file,
 #    user should add this option when do all targets related to build operation,
 #    such as clean and rebuild.
-MYFILE    ?= usr/test.c
+MYFILE    ?= usr/main.c
 EXE_C     ?= $(MYFILE)
 
 # Options for number of parallel build jobs
